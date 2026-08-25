@@ -342,6 +342,7 @@
             width: 100%;
             margin-top: 25px;
         }
+        /* 卡片指针变为手型，暗示可点击 */
         .track-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(4px);
@@ -349,13 +350,13 @@
             padding: 20px 22px;
             border-radius: 12px;
             transition: all 0.3s ease;
-            cursor: default;
+            cursor: pointer; 
         }
         .track-card:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-4px);
             border-color: var(--dark-gold);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         .track-card .track-name {
             font-size: 1.1rem;
@@ -385,6 +386,132 @@
         }
         .track-card.featured .track-name {
             color: var(--dark-gold);
+        }
+
+        /* ===== 模态框（弹窗）样式 ===== */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: linear-gradient(145deg, #1e1a16, #2a241f);
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 24px;
+            padding: 40px 45px;
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+        .modal-content::-webkit-scrollbar {
+            width: 4px;
+            background: transparent;
+        }
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--gold-brown);
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 22px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+            background: none;
+            border: none;
+        }
+        .modal-close:hover {
+            color: var(--dark-gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark-gold);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .modal-sub {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px;
+        }
+        .modal-section {
+            margin-top: 20px;
+        }
+        .modal-section h4 {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--dark-gold);
+            padding-left: 12px;
+        }
+        .modal-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            white-space: pre-wrap;
+        }
+        .modal-section .info-line {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+            padding: 2px 0;
+        }
+        .modal-section .info-line strong {
+            color: var(--dark-gold);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-right: 8px;
+        }
+        .modal-section .lyrics-text {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.85);
+            font-style: italic;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* 返场 */
@@ -499,6 +626,13 @@
                 padding: 2vh 0;
                 gap: 20px;
             }
+            .modal-content {
+                padding: 30px 20px;
+                max-height: 85vh;
+            }
+            .modal-title {
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -525,6 +659,9 @@
             .poem-wrapper {
                 padding: 1.5vh 0;
                 gap: 16px;
+            }
+            .modal-content {
+                padding: 25px 16px;
             }
         }
 
@@ -566,20 +703,14 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 2: 卷首语 1（破折号前金色，后面白色） ===== -->
+        <!-- ===== SLIDE 2: 卷首语 1 ===== -->
         <div class="slide" id="slide-2" data-index="1">
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up" style="width:100%;">
                     <div class="poem-wrapper">
-                        <p class="poem-line">
-                            <span class="gold">我们唱自然的呼吸——</span>从天地日月四季的变换到苍穹的永恒星光的静谧和山川的不语，这是天幕间盛大的交响；
-                        </p>
-                        <p class="poem-line">
-                            <span class="gold">我们唱人间的温度——</span>从故乡民谣到街头光影，烟火袅袅折射出百态的人间光景；
-                        </p>
-                        <p class="poem-line">
-                            <span class="gold">我们唱人生的路途——</span>从童年天真到岁月醇厚，情感交织成生命的经纬，悲欢离合皆是回甘。
-                        </p>
+                        <p class="poem-line"><span class="gold">我们唱自然的呼吸——</span>从天地日月四季的变换到苍穹的永恒星光的静谧和山川的不语，这是天幕间盛大的交响；</p>
+                        <p class="poem-line"><span class="gold">我们唱人间的温度——</span>从故乡民谣到街头光影，烟火袅袅折射出百态的人间光景；</p>
+                        <p class="poem-line"><span class="gold">我们唱人生的路途——</span>从童年天真到岁月醇厚，情感交织成生命的经纬，悲欢离合皆是回甘。</p>
                     </div>
                 </div>
             </div>
@@ -624,12 +755,13 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">6首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
-                        <div class="track-card"><div class="track-name">Always Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
-                        <div class="track-card"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
-                        <div class="track-card"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
-                        <div class="track-card"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
-                        <div class="track-card"><div class="track-name">Flight</div><div class="track-detail"><span>当代创作</span> Piano, Str. Ens. · —</div></div>
+                        <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
+                        <div class="track-card" data-song="Always Something Sings"><div class="track-name">Always Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
+                        <div class="track-card" data-song="Across the Vast Eternal Sky"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
+                        <!-- Abendlied 卡片 -->
+                        <div class="track-card featured" data-song="Abendlied"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
+                        <div class="track-card" data-song="Let the River Run"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
+                        <div class="track-card" data-song="Flight"><div class="track-name">Flight</div><div class="track-detail"><span>当代创作</span> Piano, Str. Ens. · —</div></div>
                     </div>
                 </div>
             </div>
@@ -657,10 +789,10 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">4首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card featured"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
-                        <div class="track-card"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
-                        <div class="track-card"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
-                        <div class="track-card"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
+                        <div class="track-card featured" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
+                        <div class="track-card" data-song="Danny Boy"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
+                        <div class="track-card" data-song="Arirang"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
+                        <div class="track-card" data-song="The Nearness of You"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
                     </div>
                 </div>
             </div>
@@ -688,31 +820,25 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">5首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card"><div class="track-name">Shall We Talk</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
-                        <div class="track-card"><div class="track-name">暗涌</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
-                        <div class="track-card featured"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
-                        <div class="track-card"><div class="track-name">Your Song</div><div class="track-detail"><span>流行改编</span> Piano · 3'35"</div></div>
-                        <div class="track-card"><div class="track-name">Summertime</div><div class="track-detail"><span>流行改编</span> Piano · 2'10"</div></div>
+                        <div class="track-card" data-song="Shall We Talk"><div class="track-name">Shall We Talk</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
+                        <div class="track-card" data-song="暗涌"><div class="track-name">暗涌</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
+                        <div class="track-card featured" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
+                        <div class="track-card" data-song="Your Song"><div class="track-name">Your Song</div><div class="track-detail"><span>流行改编</span> Piano · 3'35"</div></div>
+                        <div class="track-card" data-song="Summertime"><div class="track-name">Summertime</div><div class="track-detail"><span>流行改编</span> Piano · 2'10"</div></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== SLIDE 10: ENCORE（顺序交换） ===== -->
+        <!-- ===== SLIDE 10: ENCORE ===== -->
         <div class="slide" id="slide-10" data-index="9">
             <span class="chapter-number" style="color:rgba(201,169,110,0.08);">✦</span>
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up">
                     <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:30px; font-weight:300;">ENCORE</div>
                     <div class="encore-box">
-                        <div class="encore-item">
-                            <div class="en-title">Sure On This Shining Night</div>
-                            <div class="en-sub">Piano</div>
-                        </div>
-                        <div class="encore-item">
-                            <div class="en-title">Auld Lang Syne</div>
-                            <div class="en-sub">Accapella</div>
-                        </div>
+                        <div class="encore-item"><div class="en-title">Sure On This Shining Night</div><div class="en-sub">Piano</div></div>
+                        <div class="encore-item"><div class="en-title">Auld Lang Syne</div><div class="en-sub">Accapella</div></div>
                     </div>
                 </div>
             </div>
@@ -745,8 +871,37 @@
         </div>
     </div>
 
+    <!-- ===== 模态框（弹窗）HTML ===== -->
+    <div class="modal-overlay" id="songModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-title" id="modalTitle">Abendlied</div>
+            <div class="modal-sub" id="modalSub">古典作品 · Accapella</div>
+            
+            <div class="modal-section">
+                <h4>📋 基本信息</h4>
+                <p class="info-line"><strong>作词：</strong><span id="modalLyricist">圣经（路加福音 24:29）</span></p>
+                <p class="info-line"><strong>作曲：</strong><span id="modalComposer">Josef Gabriel Rheinberger</span></p>
+                <p class="info-line"><strong>合唱改编：</strong><span id="modalArranger">—</span></p>
+            </div>
+            
+            <div class="modal-section">
+                <h4>📖 背景介绍</h4>
+                <p id="modalBackground">《Abendlied》（晚歌）是浪漫主义时期德国作曲家赖因贝格尔最著名的宗教无伴奏合唱作品之一。这首短歌以黄昏为意象，通过纯净的和声与朴素的旋律，表达了对安宁、陪伴与光明的深切渴望，充满温暖而虔诚的情感。</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>🎶 歌词</h4>
+                <p class="lyrics-text" id="modalLyrics">Bleib' bei uns, denn es will Abend werden,
+Und der Tag hat sich geneiget, sich geneiget,
+O bleib' bei uns, denn es will Abend werden.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         (function() {
+            // ===== 幻灯片导航逻辑 =====
             const slides = document.querySelectorAll('.slide');
             const totalSlides = slides.length;
             let currentIndex = 0;
@@ -794,11 +949,9 @@
             prevBtn.addEventListener('click', () => {
                 goToSlide(currentIndex - 1);
             });
-
             nextBtn.addEventListener('click', () => {
                 goToSlide(currentIndex + 1);
             });
-
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
                     e.preventDefault();
@@ -827,6 +980,200 @@
             });
 
             updateUI(0);
+
+            // ===== 歌曲数据（所有歌曲详情） =====
+            const songData = {
+                "Abendlied": {
+                    lyricist: "圣经（路加福音 24:29）",
+                    composer: "Josef Gabriel Rheinberger",
+                    arranger: "—",
+                    genre: "古典作品",
+                    instrumentation: "Accapella",
+                    background: "《Abendlied》（晚歌）是浪漫主义时期德国作曲家赖因贝格尔最著名的宗教无伴奏合唱作品之一。这首短歌以黄昏为意象，通过纯净的和声与朴素的旋律，表达了对安宁、陪伴与光明的深切渴望，充满温暖而虔诚的情感。",
+                    lyrics: "Bleib' bei uns, denn es will Abend werden,\nUnd der Tag hat sich geneiget, sich geneiget,\nO bleib' bei uns, denn es will Abend werden."
+                },
+                "Belonging": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Always Something Sings": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Across the Vast Eternal Sky": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Let the River Run": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano, Percussion",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Flight": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano, String Ensemble",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "愿": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "当代创作",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Danny Boy": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "民歌改编",
+                    instrumentation: "Accapella",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Arirang": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "民歌改编",
+                    instrumentation: "Piano, Percussion",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "The Nearness of You": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Shall We Talk": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "暗涌": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "追梦人": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Your Song": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                },
+                "Summertime": {
+                    lyricist: "【待补充】",
+                    composer: "【待补充】",
+                    arranger: "【待补充】",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "【待补充】"
+                }
+            };
+
+            // ===== 模态框交互逻辑 =====
+            const modal = document.getElementById('songModal');
+            const closeBtn = document.getElementById('modalCloseBtn');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSub = document.getElementById('modalSub');
+            const modalLyricist = document.getElementById('modalLyricist');
+            const modalComposer = document.getElementById('modalComposer');
+            const modalArranger = document.getElementById('modalArranger');
+            const modalBackground = document.getElementById('modalBackground');
+            const modalLyrics = document.getElementById('modalLyrics');
+
+            // 点击卡片打开模态框
+            document.querySelectorAll('.track-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const songKey = this.dataset.song;
+                    if (!songKey) return;
+                    
+                    const data = songData[songKey];
+                    if (!data) {
+                        alert('该歌曲详情暂未录入，请在 songData 中补充。');
+                        return;
+                    }
+
+                    // 填充数据
+                    modalTitle.textContent = songKey;
+                    modalSub.textContent = `${data.genre} · ${data.instrumentation}`;
+                    modalLyricist.textContent = data.lyricist || '待补充';
+                    modalComposer.textContent = data.composer || '待补充';
+                    modalArranger.textContent = data.arranger || '—';
+                    modalBackground.textContent = data.background || '暂无背景介绍。';
+                    modalLyrics.textContent = data.lyrics || '暂无歌词。';
+
+                    // 显示模态框
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
         })();
     </script>
 </body>
