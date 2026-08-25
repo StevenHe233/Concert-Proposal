@@ -342,7 +342,6 @@
             width: 100%;
             margin-top: 25px;
         }
-        /* 卡片指针变为手型，暗示可点击 */
         .track-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(4px);
@@ -350,7 +349,7 @@
             padding: 20px 22px;
             border-radius: 12px;
             transition: all 0.3s ease;
-            cursor: pointer; 
+            cursor: pointer;
         }
         .track-card:hover {
             background: rgba(255, 255, 255, 0.15);
@@ -390,7 +389,7 @@
 
         /* ===== 模态框（弹窗）样式 ===== */
         .modal-overlay {
-            display: none; 
+            display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
@@ -758,7 +757,6 @@
                         <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
                         <div class="track-card" data-song="Always Something Sings"><div class="track-name">Always Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
                         <div class="track-card" data-song="Across the Vast Eternal Sky"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
-                        <!-- Abendlied 卡片 -->
                         <div class="track-card featured" data-song="Abendlied"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
                         <div class="track-card" data-song="Let the River Run"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
                         <div class="track-card" data-song="Flight"><div class="track-name">Flight</div><div class="track-detail"><span>当代创作</span> Piano, Str. Ens. · —</div></div>
@@ -774,7 +772,7 @@
                 <div class="fade-up intro-chapter">
                     <div class="chapter-tag">人文风俗</div>
                     <div class="chapter-desc">
-                        这些流传自民间的文字和旋律来自不同土地不同语言，却诉说着同样的，关于爱，关于家，关于我们共同走过的人间的故事。
+                        这些流传自民间的文字和旋律来自不同土地不同语言，却诉说着同样的，关于爱，关于家，关于我们共同走过的人间的，动人的故事。
                     </div>
                 </div>
             </div>
@@ -856,7 +854,7 @@
                         复旦大学管理学院菁音合唱团
                     </div>
                     <div class="final-social">
-                        敬请关注 微信公众号 xx / 微信视频号 xx / 小红书 xx / bilibili xx
+                        敬请关注 微信公众号 xx / 微信视频号 xx / 小红书 xx / Bilibili xx
                     </div>
                 </div>
             </div>
@@ -877,24 +875,22 @@
             <button class="modal-close" id="modalCloseBtn">&times;</button>
             <div class="modal-title" id="modalTitle">Abendlied</div>
             <div class="modal-sub" id="modalSub">古典作品 · Accapella</div>
-            
+
             <div class="modal-section">
                 <h4>📋 基本信息</h4>
-                <p class="info-line"><strong>作词：</strong><span id="modalLyricist">圣经（路加福音 24:29）</span></p>
-                <p class="info-line"><strong>作曲：</strong><span id="modalComposer">Josef Gabriel Rheinberger</span></p>
-                <p class="info-line"><strong>合唱改编：</strong><span id="modalArranger">—</span></p>
+                <p class="info-line" id="lyricistLine"><strong>作词：</strong><span id="modalLyricist"></span></p>
+                <p class="info-line" id="composerLine"><strong>作曲：</strong><span id="modalComposer"></span></p>
+                <p class="info-line" id="arrangerLine" style="display:none;"><strong>合唱改编：</strong><span id="modalArranger"></span></p>
             </div>
-            
+
             <div class="modal-section">
                 <h4>📖 背景介绍</h4>
-                <p id="modalBackground">《Abendlied》（晚歌）是浪漫主义时期德国作曲家赖因贝格尔最著名的宗教无伴奏合唱作品之一。这首短歌以黄昏为意象，通过纯净的和声与朴素的旋律，表达了对安宁、陪伴与光明的深切渴望，充满温暖而虔诚的情感。</p>
+                <p id="modalBackground"></p>
             </div>
 
             <div class="modal-section">
                 <h4>🎶 歌词</h4>
-                <p class="lyrics-text" id="modalLyrics">Bleib' bei uns, denn es will Abend werden,
-Und der Tag hat sich geneiget, sich geneiget,
-O bleib' bei uns, denn es will Abend werden.</p>
+                <p class="lyrics-text" id="modalLyrics"></p>
             </div>
         </div>
     </div>
@@ -981,16 +977,25 @@ O bleib' bei uns, denn es will Abend werden.</p>
 
             updateUI(0);
 
-            // ===== 歌曲数据（所有歌曲详情） =====
+            // ===== 歌曲数据 =====
             const songData = {
                 "Abendlied": {
-                    lyricist: "圣经（路加福音 24:29）",
+                    lyricist: "出自圣经（路加福音 24:29）",
                     composer: "Josef Gabriel Rheinberger",
-                    arranger: "—",
+                    arranger: null,  // 无合唱改编，将隐藏此行
                     genre: "古典作品",
                     instrumentation: "Accapella",
                     background: "《Abendlied》（晚歌）是浪漫主义时期德国作曲家莱茵伯格最著名的宗教无伴奏合唱作品之一。这首短歌模仿文艺复兴复调风格，以黄昏为意象，通过纯净的和声与朴素的旋律，表达了对安宁、陪伴与光明的深切渴望，充满温暖而虔诚的情感。",
                     lyrics: "Bleib' bei uns, denn es will Abend werden,\nUnd der Tag hat sich geneiget, sich geneiget,\nO bleib' bei uns, denn es will Abend werden."
+                },
+                "Across the Vast Eternal Sky": {
+                    lyricist: "Charles A. Silvestri",
+                    composer: "Ola Gjeilo",
+                    arranger: null,  // 无合唱改编，隐藏此行
+                    genre: "当代创作",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "When I was young I flew in the velvet night;\n年轻时，我在丝绒般的夜空里翱翔，\nShining by day, a firebird bathed in light!\n也曾像一只斑斓的小鸟，在阳光下熠熠发光！\nGrey now my feathers, which once were red and gold;\n如今，火红金黄的羽毛已褪去光芒，暗淡失色，\nMy destiny to soar up to the sunlight!\n可我依然要向着太阳进发！\nSunlight shines on my face;\n阳光照耀脸庞，\nThis is my grace, to be restored, born again, in flame.\n我将浴火重生。\nSunlight shines on my face;\n阳光照耀脸庞，\nThis is my grace, to be restored, born again, in flame.\n我将浴火重生。\n\nDo not despair that I am gone away;\n别为离去而失望，\nI will appear again\n我会再次出现。\nWhen the sunset paints\n那时，夕阳西沉，\nFlames across the vast, eternal sky!\n火焰会划过永恒的天际。"
                 },
                 "Belonging": {
                     lyricist: "【待补充】",
@@ -1009,25 +1014,6 @@ O bleib' bei uns, denn es will Abend werden.</p>
                     instrumentation: "Piano, String Quartet",
                     background: "【待补充】",
                     lyrics: "【待补充】"
-                },
-                "Across the Vast Eternal Sky": {
-                    lyricist: "Charles A.Silvestri",
-                    composer: "Ola Gjeilo",
-                    genre: "当代创作",
-                    instrumentation: "Piano, String Quartet",
-                    background: "【待补充】",
-                    lyrics: "When I was young I flew in the velvet night;年轻时，我在丝绒般的夜空里翱翔，\n
-Shining by day, a firebird bathed in light!也曾像一只斑斓的小鸟，在阳光下熠熠发光！\n
-Grey now my feathers, which once were red and gold;如今，火红金黄的羽毛已褪去光芒，暗淡失色，\n
-My destiny to soar up to the sunlight!可我依然要向着太阳进发！\n
-Sunlight shines on my face;阳光照耀脸庞，\n
-This is my grace, to be restored, born again, in flame.我将浴火重生。\n
-Sunlight shines on my face;阳光照耀脸庞，\n
-This is my grace, to be restored, born again, in flame.我将浴火重生。\n\n
-Do not despair that I am gone away;别为离去而失望，\n
-I will appear again我会再次出现。\n
-When the sunset paints那时，夕阳西沉，\n
-Flames across the vast, eternal sky!火焰会划过永恒的天际。"
                 },
                 "Let the River Run": {
                     lyricist: "【待补充】",
@@ -1138,32 +1124,38 @@ Flames across the vast, eternal sky!火焰会划过永恒的天际。"
             const modalLyricist = document.getElementById('modalLyricist');
             const modalComposer = document.getElementById('modalComposer');
             const modalArranger = document.getElementById('modalArranger');
+            const arrangerLine = document.getElementById('arrangerLine');
             const modalBackground = document.getElementById('modalBackground');
             const modalLyrics = document.getElementById('modalLyrics');
 
-            // 点击卡片打开模态框
             document.querySelectorAll('.track-card').forEach(card => {
                 card.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const songKey = this.dataset.song;
                     if (!songKey) return;
-                    
+
                     const data = songData[songKey];
                     if (!data) {
                         alert('该歌曲详情暂未录入，请在 songData 中补充。');
                         return;
                     }
 
-                    // 填充数据
                     modalTitle.textContent = songKey;
                     modalSub.textContent = `${data.genre} · ${data.instrumentation}`;
                     modalLyricist.textContent = data.lyricist || '待补充';
                     modalComposer.textContent = data.composer || '待补充';
-                    modalArranger.textContent = data.arranger || '—';
+
+                    // 如果有合唱改编则显示，否则隐藏
+                    if (data.arranger && data.arranger !== '【待补充】' && data.arranger !== '—') {
+                        modalArranger.textContent = data.arranger;
+                        arrangerLine.style.display = 'block';
+                    } else {
+                        arrangerLine.style.display = 'none';
+                    }
+
                     modalBackground.textContent = data.background || '暂无背景介绍。';
                     modalLyrics.textContent = data.lyrics || '暂无歌词。';
 
-                    // 显示模态框
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 });
