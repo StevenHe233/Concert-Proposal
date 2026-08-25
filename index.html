@@ -379,13 +379,6 @@
             font-size: 0.7rem;
             letter-spacing: 1px;
         }
-        .track-card.featured {
-            border-color: var(--dark-gold);
-            background: rgba(201, 169, 110, 0.1);
-        }
-        .track-card.featured .track-name {
-            color: var(--dark-gold);
-        }
 
         /* ===== 模态框（弹窗）样式 ===== */
         .modal-overlay {
@@ -503,6 +496,7 @@
             padding: 20px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.03);
+            white-space: pre-wrap;
         }
 
         @keyframes fadeIn {
@@ -514,33 +508,6 @@
         }
 
         /* 返场 */
-        .encore-box {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 30px;
-        }
-        .encore-item {
-            text-align: center;
-            padding: 30px 50px;
-            border: 1px solid rgba(201, 169, 110, 0.3);
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(4px);
-            min-width: 200px;
-        }
-        .encore-item .en-title {
-            font-size: 1.8rem;
-            font-family: var(--font-serif);
-            font-weight: 700;
-        }
-        .encore-item .en-sub {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
-        }
         #slide-10 {
             background: radial-gradient(ellipse at center, #1f2a38, #0a0f14);
         }
@@ -603,10 +570,6 @@
             }
             .track-card {
                 padding: 14px 16px;
-            }
-            .encore-item {
-                padding: 20px 30px;
-                min-width: 140px;
             }
             .chapter-number {
                 font-size: 15vw;
@@ -755,9 +718,9 @@
                     </div>
                     <div class="track-grid">
                         <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
-                        <div class="track-card" data-song="Always Something Sings"><div class="track-name">Always Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
+                        <div class="track-card" data-song="Alway Something Sings"><div class="track-name">Alway Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
                         <div class="track-card" data-song="Across the Vast Eternal Sky"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
-                        <div class="track-card featured" data-song="Abendlied"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
+                        <div class="track-card" data-song="Abendlied"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
                         <div class="track-card" data-song="Let the River Run"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
                         <div class="track-card" data-song="Flight"><div class="track-name">Flight</div><div class="track-detail"><span>当代创作</span> Piano, Str. Ens. · —</div></div>
                     </div>
@@ -787,7 +750,7 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">4首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card featured" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
+                        <div class="track-card" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
                         <div class="track-card" data-song="Danny Boy"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
                         <div class="track-card" data-song="Arirang"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
                         <div class="track-card" data-song="The Nearness of You"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
@@ -820,7 +783,7 @@
                     <div class="track-grid">
                         <div class="track-card" data-song="Shall We Talk"><div class="track-name">Shall We Talk</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
                         <div class="track-card" data-song="暗涌"><div class="track-name">暗涌</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
-                        <div class="track-card featured" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
+                        <div class="track-card" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
                         <div class="track-card" data-song="Your Song"><div class="track-name">Your Song</div><div class="track-detail"><span>流行改编</span> Piano · 3'35"</div></div>
                         <div class="track-card" data-song="Summertime"><div class="track-name">Summertime</div><div class="track-detail"><span>流行改编</span> Piano · 2'10"</div></div>
                     </div>
@@ -832,11 +795,17 @@
         <div class="slide" id="slide-10" data-index="9">
             <span class="chapter-number" style="color:rgba(201,169,110,0.08);">✦</span>
             <div class="content" style="align-items:center; text-align:center;">
-                <div class="fade-up">
-                    <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:30px; font-weight:300;">ENCORE</div>
-                    <div class="encore-box">
-                        <div class="encore-item"><div class="en-title">Sure On This Shining Night</div><div class="en-sub">Piano</div></div>
-                        <div class="encore-item"><div class="en-title">Auld Lang Syne</div><div class="en-sub">Accapella</div></div>
+                <div class="fade-up" style="width:100%;">
+                    <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:20px; font-weight:300;">ENCORE</div>
+                    <div class="track-grid" style="max-width:600px; margin:0 auto;">
+                        <div class="track-card" data-song="Sure On This Shining Night">
+                            <div class="track-name">Sure On This Shining Night</div>
+                            <div class="track-detail"><span>当代创作</span> Piano</div>
+                        </div>
+                        <div class="track-card" data-song="Auld Lang Syne">
+                            <div class="track-name">Auld Lang Syne</div>
+                            <div class="track-detail"><span>民歌改编</span> Accapella</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -854,7 +823,7 @@
                         复旦大学管理学院菁音合唱团
                     </div>
                     <div class="final-social">
-                        敬请关注 微信公众号 xx / 微信视频号 xx / 小红书 xx / Bilibili xx
+                        敬请关注 微信公众号 xx / 微信视频号 xx / 小红书 xx / bilibili xx
                     </div>
                 </div>
             </div>
@@ -877,19 +846,19 @@
             <div class="modal-sub" id="modalSub">古典作品 · Accapella</div>
 
             <div class="modal-section">
-                <h4>📋 基本信息</h4>
+                <h4>基本信息</h4>
                 <p class="info-line" id="lyricistLine"><strong>作词：</strong><span id="modalLyricist"></span></p>
                 <p class="info-line" id="composerLine"><strong>作曲：</strong><span id="modalComposer"></span></p>
                 <p class="info-line" id="arrangerLine" style="display:none;"><strong>合唱改编：</strong><span id="modalArranger"></span></p>
             </div>
 
             <div class="modal-section">
-                <h4>📖 背景介绍</h4>
+                <h4>背景介绍</h4>
                 <p id="modalBackground"></p>
             </div>
 
             <div class="modal-section">
-                <h4>🎶 歌词</h4>
+                <h4>歌词</h4>
                 <p class="lyrics-text" id="modalLyrics"></p>
             </div>
         </div>
@@ -982,7 +951,7 @@
                 "Abendlied": {
                     lyricist: "出自圣经（路加福音 24:29）",
                     composer: "Josef Gabriel Rheinberger",
-                    arranger: null,  // 无合唱改编，将隐藏此行
+                    arranger: null,
                     genre: "古典作品",
                     instrumentation: "Accapella",
                     background: "《Abendlied》（晚歌）是浪漫主义时期德国作曲家莱茵伯格最著名的宗教无伴奏合唱作品之一。这首短歌模仿文艺复兴复调风格，以黄昏为意象，通过纯净的和声与朴素的旋律，表达了对安宁、陪伴与光明的深切渴望，充满温暖而虔诚的情感。",
@@ -991,7 +960,7 @@
                 "Across the Vast Eternal Sky": {
                     lyricist: "Charles A. Silvestri",
                     composer: "Ola Gjeilo",
-                    arranger: null,  // 无合唱改编，隐藏此行
+                    arranger: null,
                     genre: "当代创作",
                     instrumentation: "Piano, String Quartet",
                     background: "【待补充】",
@@ -1006,7 +975,7 @@
                     background: "【待补充】",
                     lyrics: "【待补充】"
                 },
-                "Always Something Sings": {
+                "Alway Something Sings": {
                     lyricist: "【待补充】",
                     composer: "【待补充】",
                     arranger: "【待补充】",
@@ -1034,6 +1003,33 @@
                     lyrics: "【待补充】"
                 },
                 "愿": {
+                    lyricist: "蒋勋",
+                    composer: "冉天豪",
+                    arranger: null,
+                    genre: "当代创作",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "我愿是满山的杜鹃\n只为一次无憾的春天\n我愿是繁星\n舍给一个夏天的夜晚\n我愿是千万条江河\n流向唯一的海洋\n我愿是那月\n为你，再一次圆满\n\n如果你是岛屿\n我愿是环抱你的海洋\n如果你张起了船帆\n我愿是轻轻吹动的风浪\n如果你远行\n我愿是那路\n准备了平坦\n随你去到远方\n\n当你走累了\n我愿是夜晚\n是路旁的客栈\n有干净的枕席\n供你睡眠\n眠中有梦\n我就是你枕上的泪痕\n\n我愿是手臂\n让你依靠\n虽然白发苍苍\n我仍愿是你脚边的炉火\n与你共话回忆的老年\n你是笑\n我是应和你的歌声\n你是泪\n我是陪伴你的星光\n\n当你埋葬土中\n我愿是依伴你的青草\n你成灰，我便成尘\n如果啊！如果——\n如果你对此生还有眷恋\n我就再许一愿\n与你结来世的因缘"
+                },
+                "追梦人": {
+                    lyricist: "罗大佑",
+                    composer: "罗大佑",
+                    arranger: "黄俊达",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "让青春吹动了你的长发让它牵引你的梦\n不知不觉这城市的历史已记取了你的笑容\n红红心中蓝蓝的天是个生命的开始\n春雨不眠隔夜的你曾空独眠的日子\n\n让青春娇艳的花朵绽开了深藏的红颜\n飞去飞来的满天的飞絮是幻想你的笑脸\n秋来春去红尘中谁在宿命里安排\n冰雪不语寒夜的你那难隐藏的光彩\n\n看我看一眼吧 莫让红颜守空枕\n青春无悔不死 永远的爱人\n\n让流浪的足迹在荒漠里写下永久的回忆\n飘去飘来的笔迹是深藏的激情你的心语\n前尘后世轮回中谁在声音里徘徊\n痴情笑我凡俗的人世终难解的关怀\n\n看我看一眼吧 莫让红颜守空枕\n青春无悔不死 永远的爱人\n\n让青春吹动了你的长发让它牵引你的梦\n不知不觉这城市的历史已记取了你的笑容\n红红心中蓝蓝的天是个生命的开始\n春雨不眠隔夜的你曾空独眠的日子"
+                },
+                "Auld Lang Syne": {
+                    lyricist: "Robert Burns 记录整理",
+                    composer: "苏格兰传统民谣",
+                    arranger: "Tedd Firth",
+                    genre: "民歌改编",
+                    instrumentation: "Accapella",
+                    background: "【待补充】",
+                    lyrics: "Should auld acquaintance be forgot,\n怎能忘记旧日朋友\nAnd never brought to mind?\n心中能不欢笑\nauld acquaintance be forgot,\n旧日朋友岂能相忘\nAnd auld lang syne!\n友谊地久天长\nFor auld lang syne, my dear,\n友谊万岁朋友\nFor auld lang syne.\n友谊万岁\nWe'll take a cup o'kindness yet,\n举杯痛饮同声歌颂\nFor auld lang syne.\n友谊地久天长"
+                },
+                "Sure On This Shining Night": {
                     lyricist: "【待补充】",
                     composer: "【待补充】",
                     arranger: "【待补充】",
@@ -1043,13 +1039,13 @@
                     lyrics: "【待补充】"
                 },
                 "Danny Boy": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
+                    lyricist: "Frederick Edward Weatherly",
+                    composer: "爱尔兰传统民谣",
+                    arranger: "Peter Knight 编曲 / Philip Lawson 改编",
                     genre: "民歌改编",
                     instrumentation: "Accapella",
                     background: "【待补充】",
-                    lyrics: "【待补充】"
+                    lyrics: "Oh Danny boy, the pipes, the pipes are calling\nFrom glen to glen, and down the mountain side\nThe summer's gone, and all the flowers are dying\n'Tis you, 'tis you must go and I must bide.\n\nBut come ye back when summer's in the meadow\nOr when the valley's hushed and white with snow\n'Tis I'll be here in sunshine or in shadow\nOh Danny boy, oh Danny boy, I love you so.\n\nAnd if you come, when all the flowers are dying\nAnd I am dead, as dead I well may be\nYou'll come and find the place where I am lying\nAnd kneel and say an \"Ave\" there for me.\n\nAnd I shall hear, tho' soft you tread above me\nAnd all my dreams will warm and sweeter be\nIf you'll not fail to tell me that you love me\nI'll simply sleep in peace until you come to me.\nI'll simply sleep in peace until you come to me."
                 },
                 "Arirang": {
                     lyricist: "【待补充】",
@@ -1084,15 +1080,6 @@
                     arranger: "【待补充】",
                     genre: "流行改编",
                     instrumentation: "Piano, String Quartet",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "追梦人": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano",
                     background: "【待补充】",
                     lyrics: "【待补充】"
                 },
@@ -1145,7 +1132,6 @@
                     modalLyricist.textContent = data.lyricist || '待补充';
                     modalComposer.textContent = data.composer || '待补充';
 
-                    // 如果有合唱改编则显示，否则隐藏
                     if (data.arranger && data.arranger !== '【待补充】' && data.arranger !== '—') {
                         modalArranger.textContent = data.arranger;
                         arrangerLine.style.display = 'block';
