@@ -6,7 +6,7 @@
     <title>变迁 · Vicissitudes 音乐会</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== 全局重置 & 基础 ===== */
+        /* ===== 全部样式与上一版一致，仅移除水印相关 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -264,12 +264,12 @@
             opacity: 0.1;
         }
 
-        /* ===== S2: 卷首语 1（全新 fancy 排版） ===== */
+        /* ===== S2: 卷首语 1（移除水印） ===== */
         #slide-2 {
             background: radial-gradient(circle at 30% 30%, #2a1f18, #0d0a08);
             overflow: hidden;
         }
-        /* 背景浮动光晕 */
+        /* 背景浮动光晕保留 */
         #slide-2 .ambient-glow {
             position: absolute;
             width: 60vw;
@@ -286,21 +286,8 @@
             0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
             100% { transform: translate(-30px, 40px) scale(1.3); opacity: 1; }
         }
-        /* 背景巨大书法水印 */
-        #slide-2 .watermark-char {
-            position: absolute;
-            bottom: -5%;
-            right: 0;
-            font-family: 'Noto Serif SC', serif;
-            font-size: clamp(15rem, 30vw, 35rem);
-            font-weight: 900;
-            color: rgba(201, 169, 110, 0.04);
-            letter-spacing: 20px;
-            pointer-events: none;
-            z-index: 0;
-            line-height: 1;
-            transform: rotate(-5deg);
-        }
+        /* 移除水印 .watermark-char */
+
         /* 诗句容器 */
         #slide-2 .poem-wrapper {
             position: relative;
@@ -330,7 +317,6 @@
         #slide-2 .poem-line:nth-child(1) { animation-delay: 0.2s; }
         #slide-2 .poem-line:nth-child(2) { animation-delay: 0.6s; }
         #slide-2 .poem-line:nth-child(3) { animation-delay: 1.0s; }
-        /* 金色前缀 */
         #slide-2 .poem-line .gold {
             color: var(--dark-gold);
             font-weight: 600;
@@ -354,19 +340,12 @@
                 letter-spacing: 2px;
                 gap: 20px;
             }
-            #slide-2 .watermark-char {
-                font-size: 20rem;
-                right: -10%;
-            }
         }
         @media (max-width: 480px) {
             #slide-2 .poem-line {
                 font-size: 0.95rem;
                 padding-left: 15px;
                 line-height: 1.8;
-            }
-            #slide-2 .watermark-char {
-                font-size: 15rem;
             }
         }
 
@@ -741,12 +720,10 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 2: 卷首语 1（全新升级版） ===== -->
+        <!-- ===== SLIDE 2: 卷首语 1（已移除水印） ===== -->
         <div class="slide" id="slide-2" data-index="1">
-            <!-- 背景装饰 -->
             <div class="ambient-glow"></div>
-            <div class="watermark-char">声</div>
-
+            <!-- 已删除 <div class="watermark-char">声</div> -->
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="poem-wrapper">
                     <p class="poem-line">
@@ -937,8 +914,8 @@
 
             <div class="modal-section">
                 <h4>基本信息</h4>
-                <p class="info-line" id="lyricistLine"><strong>作词：</strong><span id="modalLyricist"></span></p>
-                <p class="info-line" id="composerLine"><strong>作曲：</strong><span id="modalComposer"></span></p>
+                <p class="info-line" id="lyricistLine"><strong id="lyricistLabel">作词：</strong><span id="modalLyricist"></span></p>
+                <p class="info-line" id="composerLine"><strong id="composerLabel">作曲：</strong><span id="modalComposer"></span></p>
                 <p class="info-line" id="arrangerLine" style="display:none;"><strong>合唱改编：</strong><span id="modalArranger"></span></p>
             </div>
 
@@ -1036,7 +1013,7 @@
 
             updateUI(0);
 
-            // ===== 歌曲数据（与之前完全一致，已包含所有最新歌词） =====
+            // ===== 歌曲数据 =====
             const songData = {
                 "Abendlied": {
                     lyricist: "出自圣经（路加福音 24:29）",
@@ -1084,8 +1061,9 @@
                     lyrics: "Sure on this shining night\n在这灿烂的夜晚\nOf starmade shadows round,\n熠熠星光环绕夜幕之上\nKindness must watch for me\n仁慈的上苍必定正看照着\nThis side the ground.\n那站在大地上的我\n\nThe late year lies down the north.\n寒冬向北方远去\nAll is healed, all is health.\n疗愈了万物，大地欣欣向荣\nHigh summer holds the earth.\n炙夏笼罩全地\nHearts all whole.\n完满了万众之心\n\nSure on this shining night\n在这灿烂的夜晚\nI weep for wonder\n我为这奇景低声啜泣\nWandering far alone\n独自一人漫步在\nOf shadows on the stars.\n由那星光所织成的天幕之下"
                 },
                 "新编放马山歌": {
-                    lyricist: "词曲：云南民歌",
-                    composer: "编创：刘晓耕",
+                    // 修改标签内容：lyricist 放 "云南民歌"，composer 放 "刘晓耕"
+                    lyricist: "云南民歌",
+                    composer: "刘晓耕",
                     arranger: null,
                     genre: "民歌改编",
                     instrumentation: "",
@@ -1111,8 +1089,9 @@
                     lyrics: "Oh Danny boy, the pipes, the pipes are calling\n哦，丹尼男孩，风笛声在呼唤\nFrom glen to glen, and down the mountain side\n从一座山谷到另一座，沿着山麓回荡\nThe summer's gone, and all the flowers are dying\n夏日已逝，万花凋零\n'Tis you, 'tis you must go and I must bide.\n是你，是你必须离去，而我只能留下守望\n\nBut come ye back when summer's in the meadow\n但请你归来，当夏日重现草原\nOr when the valley's hushed and white with snow\n或在山谷被白雪覆盖、万籁俱寂之时\n'Tis I'll be here in sunshine or in shadow\n无论在阳光下或在阴影中，我都在这里等候\nOh Danny boy, oh Danny boy, I love you so.\n哦，丹尼男孩，哦，丹尼男孩，我如此深爱你\n\nAnd if you come, when all the flowers are dying\n而若你归来时，恰逢百花衰败\nAnd I am dead, as dead I well may be\n而我也已离世，那也并非不可能\nYou'll come and find the place where I am lying\n你会来到我安息的地方\nAnd kneel and say an \"Ave\" there for me.\n跪在我的墓前，为我念一遍万福玛利亚\n\nAnd I shall hear, tho' soft you tread above me\n我将听见，纵使你脚步轻缓\nAnd all my dreams will warm and sweeter be\n我的梦境也将变得温暖而甜美\nIf you'll not fail to tell me that you love me\n只要你不忘告诉我你仍爱我\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边"
                 },
                 "Arirang": {
-                    lyricist: "词曲：中国朝鲜族及韩国传统音乐",
-                    composer: "合唱编写：hyowon Woo",
+                    // 修改标签内容：lyricist 放 "中国朝鲜族及韩国传统音乐"，composer 放 "hyowon Woo"
+                    lyricist: "中国朝鲜族及韩国传统音乐",
+                    composer: "hyowon Woo",
                     arranger: null,
                     genre: "民歌改编",
                     instrumentation: "Piano, Percussion",
@@ -1229,6 +1208,8 @@
             const modalComposer = document.getElementById('modalComposer');
             const modalArranger = document.getElementById('modalArranger');
             const arrangerLine = document.getElementById('arrangerLine');
+            const lyricistLabel = document.getElementById('lyricistLabel');
+            const composerLabel = document.getElementById('composerLabel');
             const modalBackground = document.getElementById('modalBackground');
             const modalLyrics = document.getElementById('modalLyrics');
 
@@ -1246,6 +1227,19 @@
 
                     modalTitle.textContent = songKey;
                     modalSub.textContent = `${data.genre} · ${data.instrumentation}`;
+
+                    // ----- 动态调整标签文字（针对特定歌曲） -----
+                    if (songKey === '新编放马山歌') {
+                        lyricistLabel.textContent = '词曲：';
+                        composerLabel.textContent = '编创：';
+                    } else if (songKey === 'Arirang') {
+                        lyricistLabel.textContent = '词曲：';
+                        composerLabel.textContent = '合唱编写：';
+                    } else {
+                        lyricistLabel.textContent = '作词：';
+                        composerLabel.textContent = '作曲：';
+                    }
+
                     modalLyricist.textContent = data.lyricist || '待补充';
                     modalComposer.textContent = data.composer || '待补充';
 
