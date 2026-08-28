@@ -264,33 +264,110 @@
             opacity: 0.1;
         }
 
-        /* S2: 卷首语 1（仅破折号前金色） */
+        /* ===== S2: 卷首语 1（全新 fancy 排版） ===== */
         #slide-2 {
-            background: linear-gradient(135deg, #1f1a15, #2d241c);
+            background: radial-gradient(circle at 30% 30%, #2a1f18, #0d0a08);
+            overflow: hidden;
         }
-        .poem-wrapper {
+        /* 背景浮动光晕 */
+        #slide-2 .ambient-glow {
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -10%;
+            right: -20%;
+            animation: floatGlow 20s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+            100% { transform: translate(-30px, 40px) scale(1.3); opacity: 1; }
+        }
+        /* 背景巨大书法水印 */
+        #slide-2 .watermark-char {
+            position: absolute;
+            bottom: -5%;
+            right: 0;
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(15rem, 30vw, 35rem);
+            font-weight: 900;
+            color: rgba(201, 169, 110, 0.04);
+            letter-spacing: 20px;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+            transform: rotate(-5deg);
+        }
+        /* 诗句容器 */
+        #slide-2 .poem-wrapper {
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 28px;
+            gap: 32px;
             width: 100%;
-            padding: 3vh 0;
-        }
-        .poem-line {
-            font-size: clamp(1.3rem, 2.6vw, 2.3rem);
-            font-weight: 500;
-            line-height: 2.4;
-            letter-spacing: 5px;
             max-width: 900px;
             margin: 0 auto;
-            text-align: center;
-            font-family: var(--font-serif);
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7);
-            padding: 0 10px;
+            padding: 20px 0;
         }
-        .poem-line .gold {
+        #slide-2 .poem-line {
+            font-size: clamp(1.4rem, 2.8vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.9;
+            letter-spacing: 4px;
+            text-align: left;
+            padding: 12px 0 12px 35px;
+            border-left: 4px solid var(--dark-gold);
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transform: translateY(25px);
+            animation: poemFadeUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        #slide-2 .poem-line:nth-child(1) { animation-delay: 0.2s; }
+        #slide-2 .poem-line:nth-child(2) { animation-delay: 0.6s; }
+        #slide-2 .poem-line:nth-child(3) { animation-delay: 1.0s; }
+        /* 金色前缀 */
+        #slide-2 .poem-line .gold {
             color: var(--dark-gold);
+            font-weight: 600;
+            letter-spacing: 6px;
+            text-shadow: 0 0 20px rgba(201, 169, 110, 0.3);
+        }
+
+        @keyframes poemFadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式适配第二页 */
+        @media (max-width: 768px) {
+            #slide-2 .poem-line {
+                font-size: 1.1rem;
+                padding-left: 20px;
+                border-left-width: 3px;
+                letter-spacing: 2px;
+                gap: 20px;
+            }
+            #slide-2 .watermark-char {
+                font-size: 20rem;
+                right: -10%;
+            }
+        }
+        @media (max-width: 480px) {
+            #slide-2 .poem-line {
+                font-size: 0.95rem;
+                padding-left: 15px;
+                line-height: 1.8;
+            }
+            #slide-2 .watermark-char {
+                font-size: 15rem;
+            }
         }
 
         /* S3: 卷首语 2 */
@@ -350,6 +427,7 @@
             border-radius: 12px;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-align: left;
         }
         .track-card:hover {
             background: rgba(255, 255, 255, 0.15);
@@ -380,12 +458,14 @@
             letter-spacing: 1px;
         }
 
-        /* ===== 模态框（弹窗）样式 ===== */
+        /* ===== 模态框样式 ===== */
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(8px);
             z-index: 999;
@@ -446,10 +526,10 @@
         }
         .modal-sub {
             font-size: 0.95rem;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 1px;
             margin-bottom: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding-bottom: 15px;
         }
         .modal-section {
@@ -486,30 +566,26 @@
             margin-right: 8px;
         }
         .modal-section .lyrics-text {
-            font-family: var(--font-serif);
+            font-family: '楷体', 'STKaiti', 'KaiTi', 'Noto Serif SC', serif;
             font-size: 1.05rem;
             line-height: 2.2;
             color: rgba(255, 255, 255, 0.85);
-            font-style: italic;
+            font-style: normal;
             text-align: center;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             white-space: pre-wrap;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* 返场 */
-        #slide-10 {
-            background: radial-gradient(ellipse at center, #1f2a38, #0a0f14);
         }
 
         /* 谢幕 */
@@ -521,7 +597,8 @@
             font-family: var(--font-serif);
             font-weight: 700;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.5;
+            letter-spacing: 2px;
         }
         .final-thanks {
             margin-top: 30px;
@@ -627,7 +704,6 @@
             }
         }
 
-        /* 进场动画辅助 */
         .fade-up {
             opacity: 0;
             transform: translateY(20px);
@@ -665,15 +741,23 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 2: 卷首语 1 ===== -->
+        <!-- ===== SLIDE 2: 卷首语 1（全新升级版） ===== -->
         <div class="slide" id="slide-2" data-index="1">
+            <!-- 背景装饰 -->
+            <div class="ambient-glow"></div>
+            <div class="watermark-char">声</div>
+
             <div class="content" style="align-items:center; text-align:center;">
-                <div class="fade-up" style="width:100%;">
-                    <div class="poem-wrapper">
-                        <p class="poem-line"><span class="gold">我们唱自然的呼吸——</span>从天地日月四季的变换到苍穹的永恒星光的静谧和山川的不语，这是天幕间盛大的交响；</p>
-                        <p class="poem-line"><span class="gold">我们唱人间的温度——</span>从故乡民谣到街头光影，烟火袅袅折射出百态的人间光景；</p>
-                        <p class="poem-line"><span class="gold">我们唱人生的路途——</span>从童年天真到岁月醇厚，情感交织成生命的经纬，悲欢离合皆是回甘。</p>
-                    </div>
+                <div class="poem-wrapper">
+                    <p class="poem-line">
+                        <span class="gold">我们唱自然的呼吸——</span>从天地日月四季的变换到苍穹的永恒星光的静谧和山川的不语，这是天幕间盛大的交响；
+                    </p>
+                    <p class="poem-line">
+                        <span class="gold">我们唱人间的温度——</span>从故乡民谣到街头光影，烟火袅袅折射出百态的人间光景；
+                    </p>
+                    <p class="poem-line">
+                        <span class="gold">我们唱人生的路途——</span>从童年天真到岁月醇厚，情感交织成生命的经纬，悲欢离合皆是回甘。
+                    </p>
                 </div>
             </div>
         </div>
@@ -708,21 +792,20 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 5: 篇章一 曲目 ===== -->
+        <!-- ===== SLIDE 5: 第一趴 曲目 ===== -->
         <div class="slide" id="slide-5" data-index="4" style="background: #1a241f;">
             <div class="content">
                 <div class="fade-up" style="width:100%;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px; margin-bottom:15px;">
                         <h3 style="font-size:1.8rem; letter-spacing:6px;">天地自然</h3>
-                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">6首</span>
+                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">5首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
-                        <div class="track-card" data-song="Alway Something Sings"><div class="track-name">Alway Something Sings</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 5'45"</div></div>
-                        <div class="track-card" data-song="Across the Vast Eternal Sky"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
                         <div class="track-card" data-song="Abendlied"><div class="track-name">Abendlied <span style="font-weight:300;color:rgba(255,255,255,0.4);">晚歌</span></div><div class="track-detail"><span>古典作品</span> Accapella · 3'20"</div></div>
-                        <div class="track-card" data-song="Let the River Run"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
+                        <div class="track-card" data-song="Across the Vast Eternal Sky"><div class="track-name">Across the Vast Eternal Sky</div><div class="track-detail"><span>当代创作</span> Piano, Str. Qt. · 3'10"</div></div>
                         <div class="track-card" data-song="Flight"><div class="track-name">Flight</div><div class="track-detail"><span>当代创作</span> Piano, Str. Ens. · —</div></div>
+                        <div class="track-card" data-song="Let the River Run"><div class="track-name">Let the River Run</div><div class="track-detail"><span>当代创作</span> Piano, Perc. · 2'10"</div></div>
+                        <div class="track-card" data-song="Sure On This Shining Night"><div class="track-name">Sure On This Shining Night</div><div class="track-detail"><span>当代创作</span> Piano · —</div></div>
                     </div>
                 </div>
             </div>
@@ -741,19 +824,20 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 7: 篇章二 曲目 ===== -->
+        <!-- ===== SLIDE 7: 第二趴 曲目 ===== -->
         <div class="slide" id="slide-7" data-index="6" style="background: #2a1f14;">
             <div class="content">
                 <div class="fade-up" style="width:100%;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px; margin-bottom:15px;">
                         <h3 style="font-size:1.8rem; letter-spacing:6px;">人文风俗</h3>
-                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">4首</span>
+                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">5首</span>
                     </div>
                     <div class="track-grid">
+                        <div class="track-card" data-song="新编放马山歌"><div class="track-name">新编放马山歌</div><div class="track-detail"><span>民歌改编</span> · —</div></div>
                         <div class="track-card" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
                         <div class="track-card" data-song="Danny Boy"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
                         <div class="track-card" data-song="Arirang"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
-                        <div class="track-card" data-song="The Nearness of You"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
+                        <div class="track-card" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
                     </div>
                 </div>
             </div>
@@ -772,20 +856,22 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 9: 篇章三 曲目 ===== -->
+        <!-- ===== SLIDE 9: 第三趴 曲目 ===== -->
         <div class="slide" id="slide-9" data-index="8" style="background: #11181f;">
             <div class="content">
                 <div class="fade-up" style="width:100%;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px; margin-bottom:15px;">
                         <h3 style="font-size:1.8rem; letter-spacing:6px;">人生路途</h3>
-                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">5首</span>
+                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">7首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card" data-song="Shall We Talk"><div class="track-name">Shall We Talk</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
-                        <div class="track-card" data-song="暗涌"><div class="track-name">暗涌</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
-                        <div class="track-card" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
-                        <div class="track-card" data-song="Your Song"><div class="track-name">Your Song</div><div class="track-detail"><span>流行改编</span> Piano · 3'35"</div></div>
+                        <div class="track-card" data-song="如梦"><div class="track-name">如梦</div><div class="track-detail"><span>当代创作</span> · —</div></div>
+                        <div class="track-card" data-song="The Nearness of You"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
                         <div class="track-card" data-song="Summertime"><div class="track-name">Summertime</div><div class="track-detail"><span>流行改编</span> Piano · 2'10"</div></div>
+                        <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
+                        <div class="track-card" data-song="暗涌"><div class="track-name">暗涌</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
+                        <div class="track-card" data-song="Shall We Talk"><div class="track-name">Shall We Talk</div><div class="track-detail"><span>流行改编</span> Piano, Str. Qt. · 2'45"</div></div>
+                        <div class="track-card" data-song="Your Song"><div class="track-name">Your Song</div><div class="track-detail"><span>流行改编</span> Piano · 3'35"</div></div>
                     </div>
                 </div>
             </div>
@@ -798,13 +884,17 @@
                 <div class="fade-up" style="width:100%;">
                     <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:20px; font-weight:300;">ENCORE</div>
                     <div class="track-grid" style="max-width:600px; margin:0 auto;">
-                        <div class="track-card" data-song="Sure On This Shining Night">
-                            <div class="track-name">Sure On This Shining Night</div>
-                            <div class="track-detail"><span>当代创作</span> Piano</div>
+                        <div class="track-card" data-song="绒花">
+                            <div class="track-name">绒花</div>
+                            <div class="track-detail"><span>流行改编</span> Piano · —</div>
+                        </div>
+                        <div class="track-card" data-song="外婆的澎湖湾">
+                            <div class="track-name">外婆的澎湖湾</div>
+                            <div class="track-detail"><span>流行改编</span> Piano · —</div>
                         </div>
                         <div class="track-card" data-song="Auld Lang Syne">
                             <div class="track-name">Auld Lang Syne</div>
-                            <div class="track-detail"><span>民歌改编</span> Accapella</div>
+                            <div class="track-detail"><span>民歌改编</span> Accapella · —</div>
                         </div>
                     </div>
                 </div>
@@ -816,7 +906,7 @@
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up">
                     <div class="final-quote">
-                        希望在岁月变迁中，<br>不变的是真诚的歌声与观众的相互陪伴。
+                        岁月变迁，<br>不变的是真诚的歌声，<br>以及你们的陪伴
                     </div>
                     <div class="final-thanks">感谢一路陪伴我们成长的你</div>
                     <div class="final-credits">
@@ -838,7 +928,7 @@
         </div>
     </div>
 
-    <!-- ===== 模态框（弹窗）HTML ===== -->
+    <!-- ===== 模态框（弹窗） ===== -->
     <div class="modal-overlay" id="songModal">
         <div class="modal-content">
             <button class="modal-close" id="modalCloseBtn">&times;</button>
@@ -946,7 +1036,7 @@
 
             updateUI(0);
 
-            // ===== 歌曲数据 =====
+            // ===== 歌曲数据（与之前完全一致，已包含所有最新歌词） =====
             const songData = {
                 "Abendlied": {
                     lyricist: "出自圣经（路加福音 24:29）",
@@ -966,41 +1056,41 @@
                     background: "【待补充】",
                     lyrics: "When I was young I flew in the velvet night;\n年轻时，我在丝绒般的夜空里翱翔，\nShining by day, a firebird bathed in light!\n也曾像一只斑斓的小鸟，在阳光下熠熠发光！\nGrey now my feathers, which once were red and gold;\n如今，火红金黄的羽毛已褪去光芒，暗淡失色，\nMy destiny to soar up to the sunlight!\n可我依然要向着太阳进发！\nSunlight shines on my face;\n阳光照耀脸庞，\nThis is my grace, to be restored, born again, in flame.\n我将浴火重生。\nSunlight shines on my face;\n阳光照耀脸庞，\nThis is my grace, to be restored, born again, in flame.\n我将浴火重生。\n\nDo not despair that I am gone away;\n别为离去而失望，\nI will appear again\n我会再次出现。\nWhen the sunset paints\n那时，夕阳西沉，\nFlames across the vast, eternal sky!\n火焰会划过永恒的天际。"
                 },
-                "Belonging": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "当代创作",
-                    instrumentation: "Piano",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Alway Something Sings": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "当代创作",
-                    instrumentation: "Piano, String Quartet",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Let the River Run": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "当代创作",
-                    instrumentation: "Piano, Percussion",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
                 "Flight": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
+                    lyricist: "Craig Carnelia",
+                    composer: "Craig Carnelia",
+                    arranger: "Ryan Murphy",
                     genre: "当代创作",
                     instrumentation: "Piano, String Ensemble",
                     background: "【待补充】",
-                    lyrics: "【待补充】"
+                    lyrics: "Let me run through a field in the night, let me lift from the ground ‘til my soul is in flight.\n让我在夜色中跑过原野，让我从地面升起，直到我的灵魂展翅飞翔。\nLet me sway like the shade of a tree, let me swirl like a cloud in a storm on the sea.\n让我像树影般摇曳，让我像海上风暴中的云朵般旋转。\nWish me on my way through the dawning day.\n在破晓时分，为我祝福送我远行。\nI wanna flow, wanna rise, wanna spill, wanna grow in a grove on the side of a hill.\n我想要奔流，想要升腾，想要倾泻，想要在山坡上的小树林里生长。\nI don’t care if the train runs late, if the checks don’t clear, if the house blows down.\n我不在乎火车晚点，支票无法兑现，房子被风刮倒。\nI’ll be off where the weeds run wild, where the seeds fall far from this earthbound town.\n我要去往野草疯长的地方，那里种子飘落，远离这沉闷的小镇。\nAnd I’ll start to soar. Watch me rain ‘til I pour.\n我将开始翱翔。看我如雨般倾泻而下。\nI’ll catch a ship that’ll sail me astray, get caught in a wind, I’ll just have to obey ‘til I’m flyin’ away...\n我要搭一艘会带我迷失方向的船，卷入一阵风，我只能顺从，直到我飞向远方……\nLet me leave behind all the clouds in my mind.\n让我抛开心中的所有阴霾。\nI wanna wake without wondering why, finding myself in a burst for the sky. High! I’ll just roll. Let me lose all control.\n我想要醒来时不再追问缘由，发现自己正冲向天空。高飞！我就这样翻滚，让我失去所有控制。\nI wanna float like a wish in a well, free as the sound of the sea in a shell.\n我想像井中的许愿般漂浮，像贝壳里的海声一样自由。\nI don’t know, but maybe I’m just a fool. I should keep to the ground. I should stay where I’m at.\n我不知道，也许我只是个傻瓜。我应该待在地上，留在原地。\nMaybe everyone has hunger like this, and the hunger will pass. But I can’t think like that.\n也许每个人都有这样的渴望，而渴望终会消退。但我不能那样想。\nAll I know is somewhere, through a clearing, there’s a flickering of sunlight on a river long and wide, and I have such a river inside.\n我只知道，在某个地方，穿过一片空地，有一条宽阔的长河上闪烁着阳光，而我心中也有这样一条河。\nLet me run through a field in the night, let me lift from the ground ‘til my soul is in flight.\n让我在夜色中跑过原野，让我从地面升起，直到我的灵魂展翅飞翔。\nLet me sway like the shade of a tree, let me swirl like a cloud in a storm on the sea.\n让我像树影般摇曳，让我像海上风暴中的云朵般旋转。\nWish me on my way through the dawning day.\n在破晓时分，为我祝福送我远行。\nI wanna flow, wanna rise, wanna spill, wanna grow on the side of a hill, wanna shift like a wave rollin’ on, wanna drift from the path I’ve been traveling upon, before I am gone.\n我想要奔流，想要升腾，想要倾泻，想要在山坡上生长，想要像前进的波浪般涌动，想要在我离去之前，偏离我一直行走的那条路。"
+                },
+                "Let the River Run": {
+                    lyricist: "Carly Simon",
+                    composer: "Carly Simon",
+                    arranger: "Craig Hella Johnson",
+                    genre: "当代创作",
+                    instrumentation: "Piano, Percussion",
+                    background: "【待补充】",
+                    lyrics: "We're coming to the edge,\n我们正来到边缘，\nRunning on the water,\n在水面上奔跑，\nComing through the fog,\n穿行过迷雾，\nYour sons and daughters.\n你的儿女们。\nLet the river run,\n让大河奔流吧，\nLet all the dreamers\n让所有追梦人\nWake the nation.\n唤醒这国度。\nCome, the New Jerusalem.\n来吧，新耶路撒冷。\nSilver cities rise,\n银色城邦升起，\nThe morning lights\n晨光照亮\nThe streets that meet them,\n连接它们的街道，\nAnd sirens call them on\n汽笛声伴着歌声\nWith a song.\n召唤它们前行。\nIt's asking for the taking.\n它在等待着被获取。\nTrembling, shaking.\n颤抖着，摇晃着。\nOh, my heart is aching.\n哦，我的心在痛。\n\nWe're coming to the edge,\n我们正来到边缘，\nRunning on the water,\n在水面上奔跑，\nComing through the fog,\n穿行过迷雾，\nYour sons and daughters.\n你的儿女们。\nWe the great and small\n我们，无论伟大或渺小，\nStand on a star\n立于星辰之上，\nAnd blaze a trail of desire\n燃起一条欲望的轨迹，\nThrough the dark'ning dawn.\n穿过渐暗的黎明。\nIt's asking for the taking.\n它在等待着被获取。\nCome run with me now,\n现在随我奔跑吧，\nThe sky is the color of blue\n天空是一种蓝色，\nYou've never even seen\n你从未见过的蓝，\nIn the eyes of your lover.\n在你爱人的眼眸里。\nOh, my heart is aching.\n哦，我的心在痛。\n\nWe're coming to the edge,\n我们正来到边缘，\nRunning on the water,\n在水面上奔跑，\nComing through the fog,\n穿行过迷雾，\nYour sons and daughters.\n你的儿女们。\nIt's asking for the taking.\n它在等待着被获取。\nTrembling, shaking.\n颤抖着，摇晃着。\nOh, my heart is aching.\n哦，我的心在痛。\nWe're coming to the edge,\n我们正来到边缘，\nRunning on the water,\n在水面上奔跑，\nComing through the fog,\n穿行过迷雾，\nYour sons and daughters.\n你的儿女们。\nLet the river run,\n让大河奔流吧，\nLet all the dreamers\n让所有追梦人\nWake the nation.\n唤醒这国度。\nCome, the New Jerusalem.\n来吧，新耶路撒冷。"
+                },
+                "Sure On This Shining Night": {
+                    lyricist: "James Agee（《Description of Elysium》）",
+                    composer: "Morten Lauridsen",
+                    arranger: null,
+                    genre: "当代创作",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "Sure on this shining night\n在这灿烂的夜晚\nOf starmade shadows round,\n熠熠星光环绕夜幕之上\nKindness must watch for me\n仁慈的上苍必定正看照着\nThis side the ground.\n那站在大地上的我\n\nThe late year lies down the north.\n寒冬向北方远去\nAll is healed, all is health.\n疗愈了万物，大地欣欣向荣\nHigh summer holds the earth.\n炙夏笼罩全地\nHearts all whole.\n完满了万众之心\n\nSure on this shining night\n在这灿烂的夜晚\nI weep for wonder\n我为这奇景低声啜泣\nWandering far alone\n独自一人漫步在\nOf shadows on the stars.\n由那星光所织成的天幕之下"
+                },
+                "新编放马山歌": {
+                    lyricist: "词曲：云南民歌",
+                    composer: "编创：刘晓耕",
+                    arranger: null,
+                    genre: "民歌改编",
+                    instrumentation: "",
+                    background: "【待补充】",
+                    lyrics: "正月放马呜噜噜的正月里正哟\n赶起马来登路尼程\n咿哟 登路尼程\n大马赶在呜噜噜的山头里上哟\n小马赶来随后尼跟\n咿哟 随后的跟\n\n二月放马呜噜噜的百草尼发哟\n小马吃草深山里跑\n咿哟 深山里跑\n马无夜草呜噜噜的不会尼胖哟\n草无露水不会尼发\n咿哟 不会尼发\n\n正月放马呜噜噜的哟\n赶起马来登路尼程\n东山坡上青草尼多\n十月放马石岩尼脚哟\n石呀么石岩脚\n哎心里有话对马儿说"
                 },
                 "愿": {
                     lyricist: "蒋勋",
@@ -1011,6 +1101,24 @@
                     background: "【待补充】",
                     lyrics: "我愿是满山的杜鹃\n只为一次无憾的春天\n我愿是繁星\n舍给一个夏天的夜晚\n我愿是千万条江河\n流向唯一的海洋\n我愿是那月\n为你，再一次圆满\n\n如果你是岛屿\n我愿是环抱你的海洋\n如果你张起了船帆\n我愿是轻轻吹动的风浪\n如果你远行\n我愿是那路\n准备了平坦\n随你去到远方\n\n当你走累了\n我愿是夜晚\n是路旁的客栈\n有干净的枕席\n供你睡眠\n眠中有梦\n我就是你枕上的泪痕\n\n我愿是手臂\n让你依靠\n虽然白发苍苍\n我仍愿是你脚边的炉火\n与你共话回忆的老年\n你是笑\n我是应和你的歌声\n你是泪\n我是陪伴你的星光\n\n当你埋葬土中\n我愿是依伴你的青草\n你成灰，我便成尘\n如果啊！如果——\n如果你对此生还有眷恋\n我就再许一愿\n与你结来世的因缘"
                 },
+                "Danny Boy": {
+                    lyricist: "Frederick Edward Weatherly",
+                    composer: "爱尔兰传统民谣",
+                    arranger: "Peter Knight 编曲 / Philip Lawson 改编",
+                    genre: "民歌改编",
+                    instrumentation: "Accapella",
+                    background: "【待补充】",
+                    lyrics: "Oh Danny boy, the pipes, the pipes are calling\n哦，丹尼男孩，风笛声在呼唤\nFrom glen to glen, and down the mountain side\n从一座山谷到另一座，沿着山麓回荡\nThe summer's gone, and all the flowers are dying\n夏日已逝，万花凋零\n'Tis you, 'tis you must go and I must bide.\n是你，是你必须离去，而我只能留下守望\n\nBut come ye back when summer's in the meadow\n但请你归来，当夏日重现草原\nOr when the valley's hushed and white with snow\n或在山谷被白雪覆盖、万籁俱寂之时\n'Tis I'll be here in sunshine or in shadow\n无论在阳光下或在阴影中，我都在这里等候\nOh Danny boy, oh Danny boy, I love you so.\n哦，丹尼男孩，哦，丹尼男孩，我如此深爱你\n\nAnd if you come, when all the flowers are dying\n而若你归来时，恰逢百花衰败\nAnd I am dead, as dead I well may be\n而我也已离世，那也并非不可能\nYou'll come and find the place where I am lying\n你会来到我安息的地方\nAnd kneel and say an \"Ave\" there for me.\n跪在我的墓前，为我念一遍万福玛利亚\n\nAnd I shall hear, tho' soft you tread above me\n我将听见，纵使你脚步轻缓\nAnd all my dreams will warm and sweeter be\n我的梦境也将变得温暖而甜美\nIf you'll not fail to tell me that you love me\n只要你不忘告诉我你仍爱我\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边"
+                },
+                "Arirang": {
+                    lyricist: "词曲：中国朝鲜族及韩国传统音乐",
+                    composer: "合唱编写：hyowon Woo",
+                    arranger: null,
+                    genre: "民歌改编",
+                    instrumentation: "Piano, Percussion",
+                    background: "【待补充】",
+                    lyrics: "아리랑 아리랑 아라리요\n阿里郎 阿里郎 阿里郎哟\n아리랑 고개로 넘어 간다\n我的郎君翻山过岭 路途遥远\n나를 버리고 가시는 님은\n你怎么情愿把我扔下\n십리도 못 가서 발병 난다\n出了门不到十里路你会想家"
+                },
                 "追梦人": {
                     lyricist: "罗大佑",
                     composer: "罗大佑",
@@ -1020,6 +1128,87 @@
                     background: "【待补充】",
                     lyrics: "让青春吹动了你的长发让它牵引你的梦\n不知不觉这城市的历史已记取了你的笑容\n红红心中蓝蓝的天是个生命的开始\n春雨不眠隔夜的你曾空独眠的日子\n\n让青春娇艳的花朵绽开了深藏的红颜\n飞去飞来的满天的飞絮是幻想你的笑脸\n秋来春去红尘中谁在宿命里安排\n冰雪不语寒夜的你那难隐藏的光彩\n\n看我看一眼吧 莫让红颜守空枕\n青春无悔不死 永远的爱人\n\n让流浪的足迹在荒漠里写下永久的回忆\n飘去飘来的笔迹是深藏的激情你的心语\n前尘后世轮回中谁在声音里徘徊\n痴情笑我凡俗的人世终难解的关怀\n\n看我看一眼吧 莫让红颜守空枕\n青春无悔不死 永远的爱人\n\n让青春吹动了你的长发让它牵引你的梦\n不知不觉这城市的历史已记取了你的笑容\n红红心中蓝蓝的天是个生命的开始\n春雨不眠隔夜的你曾空独眠的日子"
                 },
+                "如梦": {
+                    lyricist: "翔翎",
+                    composer: "刘新成",
+                    arranger: null,
+                    genre: "当代创作",
+                    instrumentation: "",
+                    background: "【待补充】",
+                    lyrics: "来信问我\n冰雪的心情\n我摇摇头\n把寂寞和泪水\n都还给了你\n\n至于早春\n缤纷的花事如梦\n我日日在江边梳头\n春水把我的容貌\n也复印给了你\n\n而秋来的岁月\n应是一种等待\n直到你的步履\n落叶似地\n将我的足印\n一一掩覆"
+                },
+                "The Nearness of You": {
+                    lyricist: "Ned Washington",
+                    composer: "Hoagy Carmichael",
+                    arranger: "Tripp Carter",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "It's not the pale moon that excites me\n让我心动的并非那轮苍白的月亮\nThat thrills and delights me, oh no\n它并不令我震颤与欢喜，哦不\nIt's just the nearness of you\n仅仅是因为你的近在咫尺\n\nIt isn't your sweet conversation\n并非你那甜蜜的话语\nThat brings this sensation, oh no\n带来了这种感觉，哦不\nIt's just the nearness of you\n仅仅是因为你的近在咫尺\n\nWhen you're in my arms\n当你在我怀中\nAnd I feel you so close to me\n当我感受你如此贴近\nAll my wildest dreams come true\n我所有狂野的梦想都成真\n\nI need no soft lights to enchant me\n我不需要柔光来将我迷惑\nIf you'll only grant me the right\n只求你应允我\nTo hold you ever so tight\n将你紧紧拥抱的权利\nAnd to feel in the night\n好在夜色中感受\nThe nearness of you\n你的近在咫尺"
+                },
+                "Summertime": {
+                    lyricist: "George Gershwin, Ira Gershwin, Dorothy Heyward, DuBose Heyward",
+                    composer: "George Gershwin",
+                    arranger: "Mac Huff",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "Summertime, and the livin' is easy\n夏日时光，生活如此惬意\nFish are jumpin' and the cotton is high\n鱼儿跳跃，棉花正长得高高\nOh, your daddy's rich, and your ma is good-lookin'\n哦，你的爸爸很富有，妈妈也很漂亮\nSo hush, little baby, don' you cry\n所以安静吧，小宝贝，别哭泣\n\nOne of these mornin's you're goin' to rise up singin'\n就在某个清晨，你将会起身歌唱\nThen you'll spread your wings and you'll take the sky\n然后张开翅膀，飞向蓝天\nBut till that mornin', there's a nothin' can harm you\n但在那一天到来之前，没有什么能伤害你\nWith Daddy and Mammy standin' by\n因为爸爸妈妈一直守在你身旁"
+                },
+                "Belonging": {
+                    lyricist: "Paul Grindlay",
+                    composer: "Marie-Clairé Saindon",
+                    arranger: null,
+                    genre: "当代创作",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "The air moves in me and I move in the air"
+                },
+                "暗涌": {
+                    lyricist: "林夕",
+                    composer: "陈辉阳",
+                    arranger: "姜宽",
+                    genre: "流行改编",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "就算天空再深 看不出裂痕\n眉头仍骤满密云\n就算一屋暗灯 照不穿我身\n仍可反映你心\n让这口烟跳升 我身躯下沉\n曾多么想多么想贴近\n你的心和眼 口和耳亦没缘分\n我都捉不紧\n害怕悲剧重演 我的命中命中\n越美丽的东西我越不可碰\n历史在重演 这么烦嚣城中\n没理由相恋可以没有暗涌\n其实我再去爱惜你又有何用\n难道这次我抱紧你未必落空\n仍静候着你说 我别错用神\n什么我都有预感\n然后睁不开两眼 看命运光临\n然后天空又再涌起密云"
+                },
+                "Shall We Talk": {
+                    lyricist: "林夕",
+                    composer: "陈辉阳",
+                    arranger: "姜宽",
+                    genre: "流行改编",
+                    instrumentation: "Piano, String Quartet",
+                    background: "【待补充】",
+                    lyrics: "明月光 为何又照地堂\n宁愿在公园躲藏 不想喝汤\n任由目光 留在漫画一角\n为何望母亲一眼就如罚留堂\n\n孩童只盼望欢乐 大人只知道寄望\n为何都不大懂得努力体恤对方\n大门外有蟋蟀 回响却如同幻觉\nShall we talk Shall we talk\n就当重新手拖手去上学堂\n\n陪我讲 陪我讲出我们最后何以生疏\n谁怕讲 谁会可悲得过孤独探戈\n难得 可以同座 何以 要忌讳赤裸\n如果心声真有疗效 谁怕暴露更多 你别怕我\n\n屏幕发光 无论什么都看\n情人在分手边缘只敢喝汤\n若沉默似金 还谈什么恋爱\n宁愿在发声机器面前笑着忙\n\n成人只寄望收获 情人只听见承诺\n为何都不大懂得努力珍惜对方\n螳螂面对蟋蟀 回响也如同幻觉\nShall we talk Shall we talk\n就算牙关开始打震 别说谎\n\n陪我讲 陪我讲出我们最后何以生疏\n谁怕讲 谁会可悲得过孤独探戈\n难得 可以同座 何以 要忌讳赤裸\n如果心声真有疗效 谁怕暴露更多\n陪我讲 陪我亲身正视眼泪谁跌得多\n无法讲 除非彼此已失去了能力触摸\n铃声 可以宁静 难过 却避不过\n如果沉默太沉重 别要轻轻带过\n\n明月光 为何未照地堂\n孩儿在公司很忙 不需喝汤\nShall we talk 斜阳白赶一趟\n沉默令我听得见叶儿声声降"
+                },
+                "Your Song": {
+                    lyricist: "Bernie Taupin",
+                    composer: "Elton John",
+                    arranger: "Mac Huff",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "It's a little bit funny, this feeling inside\n这种感觉有点奇妙\nI'm not one of those who can easily hide\n我并非那种善于掩饰的人\nI don't have much money, but boy if I did\n我没有很多钱，但若我有\nI'd buy a big house where we both could live\n我会买栋大房子，让我们同住\nIf I was a sculptor, but then again, no\n如果我是雕塑家，但可惜我不是\nOr a man who makes potions in a travelling show\n或是游艺会上调制药水的人\nI know it's not much, but it's the best I can do\n我知道这不算什么，却是我能给出的最好\nMy gift is my song, and this one's for you\n我的礼物就是我的歌，而这首歌是献给你的\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好\n\nI sat on the roof and kicked off the moss\n我坐在屋顶上，踢掉青苔\nWell a few of the verses, well they've got me quite cross\n有几段歌词让我颇为头疼\nBut the sun's been quite kind while I wrote this song\n但写这首歌时阳光很温柔\nIt's for people like you that keep it turned on\n正是像你这样的人，让它一直闪耀\nSo excuse me forgetting, but these things I do\n所以请原谅我的健忘，我总这样\nYou see I've forgotten if they're green or they're blue\n你看，我甚至忘了它们是绿色还是蓝色\nAnyway the thing is what I really mean\n总之，我想说的是\nYours are the sweetest eyes I've ever seen\n你有着我见过最动人的眼睛\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好"
+                },
+                "绒花": {
+                    lyricist: "刘国富、田农",
+                    composer: "王酩",
+                    arranger: "吴昊",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "世上有朵美丽的花\n那是青春吐芳华\n铮铮硬骨绽花开\n沥沥鲜血染红它\n\n啊～ 啊～\n绒花，绒花\n啊～ 啦～\n一路芬芳满山崖\n\n世上有朵英雄的花\n那是青春放光华\n花载亲人上高山\n顶天立地迎彩霞\n\n啊～ 啊～\n绒花，绒花\n啦～ 啦～\n一路芬芳满山崖"
+                },
+                "外婆的澎湖湾": {
+                    lyricist: "叶佳修",
+                    composer: "叶佳修",
+                    arranger: "王金峰",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "晚风轻拂澎湖湾，白浪逐沙滩\n没有椰林缀斜阳，只是一片海蓝蓝\n坐在门前的矮墙上，一遍遍怀想\n也是黄昏的沙滩上，有着脚印两对半\n\n那是外婆拄着杖，将我手轻轻挽\n踩着薄暮走向余晖，暖暖的澎湖湾\n一个脚印是笑语一串，消磨许多时光\n直到夜色吞没我俩在回家的路上\n\n澎湖湾，澎湖湾，外婆的澎湖湾\n有我许多的童年幻想\n阳光、沙滩、海浪、仙人掌\n还有一位老船长"
+                },
                 "Auld Lang Syne": {
                     lyricist: "Robert Burns 记录整理",
                     composer: "苏格兰传统民谣",
@@ -1027,79 +1216,7 @@
                     genre: "民歌改编",
                     instrumentation: "Accapella",
                     background: "【待补充】",
-                    lyrics: "Should auld acquaintance be forgot,\n怎能忘记旧日朋友\nAnd never brought to mind?\n心中能不欢笑\nauld acquaintance be forgot,\n旧日朋友岂能相忘\nAnd auld lang syne!\n友谊地久天长\nFor auld lang syne, my dear,\n友谊万岁朋友\nFor auld lang syne.\n友谊万岁\nWe'll take a cup o'kindness yet,\n举杯痛饮同声歌颂\nFor auld lang syne.\n友谊地久天长"
-                },
-                "Sure On This Shining Night": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "当代创作",
-                    instrumentation: "Piano",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Danny Boy": {
-                    lyricist: "Frederick Edward Weatherly",
-                    composer: "爱尔兰传统民谣",
-                    arranger: "Peter Knight 编曲 / Philip Lawson 改编",
-                    genre: "民歌改编",
-                    instrumentation: "Accapella",
-                    background: "【待补充】",
-                    lyrics: "Oh Danny boy, the pipes, the pipes are calling\nFrom glen to glen, and down the mountain side\nThe summer's gone, and all the flowers are dying\n'Tis you, 'tis you must go and I must bide.\n\nBut come ye back when summer's in the meadow\nOr when the valley's hushed and white with snow\n'Tis I'll be here in sunshine or in shadow\nOh Danny boy, oh Danny boy, I love you so.\n\nAnd if you come, when all the flowers are dying\nAnd I am dead, as dead I well may be\nYou'll come and find the place where I am lying\nAnd kneel and say an \"Ave\" there for me.\n\nAnd I shall hear, tho' soft you tread above me\nAnd all my dreams will warm and sweeter be\nIf you'll not fail to tell me that you love me\nI'll simply sleep in peace until you come to me.\nI'll simply sleep in peace until you come to me."
-                },
-                "Arirang": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "民歌改编",
-                    instrumentation: "Piano, Percussion",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "The Nearness of You": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Shall We Talk": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano, String Quartet",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "暗涌": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano, String Quartet",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Your Song": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
-                },
-                "Summertime": {
-                    lyricist: "【待补充】",
-                    composer: "【待补充】",
-                    arranger: "【待补充】",
-                    genre: "流行改编",
-                    instrumentation: "Piano",
-                    background: "【待补充】",
-                    lyrics: "【待补充】"
+                    lyrics: "Should auld acquaintance be forgot,\n怎能忘记旧日朋友\nAnd never brought to mind?\n心中能不欢笑\nShould auld acquaintance be forgot,\n旧日朋友岂能相忘\nAnd auld lang syne!\n友谊地久天长\nFor auld lang syne, my dear,\n友谊万岁朋友\nFor auld lang syne.\n友谊万岁\nWe'll take a cup o'kindness yet,\n举杯痛饮同声歌颂\nFor auld lang syne.\n友谊地久天长"
                 }
             };
 
@@ -1132,7 +1249,7 @@
                     modalLyricist.textContent = data.lyricist || '待补充';
                     modalComposer.textContent = data.composer || '待补充';
 
-                    if (data.arranger && data.arranger !== '【待补充】' && data.arranger !== '—') {
+                    if (data.arranger && data.arranger !== '【待补充】' && data.arranger !== '—' && data.arranger !== null) {
                         modalArranger.textContent = data.arranger;
                         arrangerLine.style.display = 'block';
                     } else {
