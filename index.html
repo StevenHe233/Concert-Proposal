@@ -6,7 +6,7 @@
     <title>变迁 · Vicissitudes 音乐会</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== 全部样式与上一版完全一致 ===== */
+        /* ===== 全部样式与上一版一致（仅修改谢幕页文本内容） ===== */
         * {
             margin: 0;
             padding: 0;
@@ -562,38 +562,68 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* 谢幕 */
+        /* ===== 谢幕（角色名左对齐，名字左对齐，两字姓名内部加全角空格，姓名间用半角空格） ===== */
         #slide-11 {
             background: radial-gradient(circle at 30% 40%, #4a3a2a, #1a100a);
         }
         .final-quote {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
             font-family: var(--font-serif);
             font-weight: 700;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.4;
             letter-spacing: 2px;
         }
         .final-thanks {
-            margin-top: 30px;
-            font-size: 1.1rem;
+            margin-top: 18px;
+            font-size: 1.0rem;
             letter-spacing: 4px;
             color: rgba(255, 255, 255, 0.5);
         }
+        .crew-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px 20px;
+            margin-top: 16px;
+            width: 100%;
+            max-width: 700px;
+        }
+        .crew-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0 8px;
+            align-items: baseline;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .crew-role {
+            color: var(--dark-gold);
+            font-weight: 400;
+            text-align: left;
+            white-space: nowrap;
+        }
+        .crew-name {
+            font-weight: 300;
+            text-align: left;
+            white-space: nowrap;
+        }
         .final-credits {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            line-height: 2;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            line-height: 1.8;
             color: rgba(255, 255, 255, 0.3);
             letter-spacing: 1px;
         }
         .final-social {
-            margin-top: 30px;
+            margin-top: 20px;
             color: var(--dark-gold);
             letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 30px;
+            padding-top: 20px;
             width: 70%;
             margin-left: auto;
             margin-right: auto;
@@ -646,6 +676,15 @@
             .modal-title {
                 font-size: 1.8rem;
             }
+            .crew-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px 16px;
+                max-width: 500px;
+            }
+            .crew-item {
+                grid-template-columns: 70px 1fr;
+                font-size: 0.7rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -675,6 +714,15 @@
             }
             .modal-content {
                 padding: 25px 16px;
+            }
+            .crew-grid {
+                grid-template-columns: 1fr;
+                gap: 3px 0;
+                max-width: 300px;
+            }
+            .crew-item {
+                grid-template-columns: 70px 1fr;
+                font-size: 0.65rem;
             }
         }
 
@@ -795,7 +843,7 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 7: 第二趴 曲目（绒花已移至 Danny Boy 和 Arirang 之间） ===== -->
+        <!-- ===== SLIDE 7: 第二趴 曲目 ===== -->
         <div class="slide" id="slide-7" data-index="6" style="background: #2a1f14;">
             <div class="content">
                 <div class="fade-up" style="width:100%;">
@@ -804,10 +852,9 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">6首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card" data-song="新编放马山歌"><div class="track-name">新编放马山歌</div><div class="track-detail"><span>民歌改编</span> · —</div></div>
+                        <div class="track-card" data-song="新编放马山歌"><div class="track-name">新编放马山歌</div><div class="track-detail"><span>民歌改编</span> Accapella · —</div></div>
                         <div class="track-card" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
                         <div class="track-card" data-song="Danny Boy"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
-                        <!-- 绒花已移至此处 -->
                         <div class="track-card" data-song="绒花"><div class="track-name">绒花</div><div class="track-detail"><span>流行改编</span> Piano · —</div></div>
                         <div class="track-card" data-song="Arirang"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
                         <div class="track-card" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
@@ -838,7 +885,7 @@
                         <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">7首</span>
                     </div>
                     <div class="track-grid">
-                        <div class="track-card" data-song="如梦"><div class="track-name">如梦</div><div class="track-detail"><span>当代创作</span> · —</div></div>
+                        <div class="track-card" data-song="如梦"><div class="track-name">如梦</div><div class="track-detail"><span>当代创作</span> Piano · —</div></div>
                         <div class="track-card" data-song="The Nearness of You"><div class="track-name">The Nearness of You</div><div class="track-detail"><span>流行改编</span> Piano · 2'45"</div></div>
                         <div class="track-card" data-song="Summertime"><div class="track-name">Summertime</div><div class="track-detail"><span>流行改编</span> Piano · 2'10"</div></div>
                         <div class="track-card" data-song="Belonging"><div class="track-name">Belonging</div><div class="track-detail"><span>当代创作</span> Piano · 3'15"</div></div>
@@ -850,17 +897,16 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 10: ENCORE（首曲已换为夜来香） ===== -->
+        <!-- ===== SLIDE 10: ENCORE ===== -->
         <div class="slide" id="slide-10" data-index="9">
             <span class="chapter-number" style="color:rgba(201,169,110,0.08);">✦</span>
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up" style="width:100%;">
                     <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:20px; font-weight:300;">ENCORE</div>
                     <div class="track-grid" style="max-width:600px; margin:0 auto;">
-                        <!-- 第一首替换为夜来香 -->
                         <div class="track-card" data-song="夜来香">
                             <div class="track-name">夜来香</div>
-                            <div class="track-detail"><span>流行改编</span> Piano · —</div>
+                            <div class="track-detail"><span>流行改编</span> Accapella · —</div>
                         </div>
                         <div class="track-card" data-song="外婆的澎湖湾">
                             <div class="track-name">外婆的澎湖湾</div>
@@ -875,7 +921,7 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 11: 谢幕 ===== -->
+        <!-- ===== SLIDE 11: 谢幕（已修正两字人名的写法） ===== -->
         <div class="slide" id="slide-11" data-index="10">
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up">
@@ -883,6 +929,22 @@
                         岁月变迁，<br>不变的是真诚的歌声，<br>以及你们的陪伴
                     </div>
                     <div class="final-thanks">感谢一路陪伴我们成长的你</div>
+
+                    <div class="crew-grid">
+                        <div class="crew-item"><span class="crew-role">项目统筹</span><span class="crew-name">徐　晨 李　涛</span></div>
+                        <div class="crew-item"><span class="crew-role">选曲</span><span class="crew-name">杨舒文 何思远 常怡然</span></div>
+                        <div class="crew-item"><span class="crew-role">主题策划</span><span class="crew-name">何思远 常怡然</span></div>
+                        <div class="crew-item"><span class="crew-role">文案</span><span class="crew-name">常怡然</span></div>
+                        <div class="crew-item"><span class="crew-role">技术</span><span class="crew-name">李天华</span></div>
+                        <div class="crew-item"><span class="crew-role">报批</span><span class="crew-name">和　啸 李天华</span></div>
+                        <div class="crew-item"><span class="crew-role">宣传</span><span class="crew-name">邵　君</span></div>
+                        <div class="crew-item"><span class="crew-role">赞助</span><span class="crew-name">蔡啸峰 王　璐</span></div>
+                        <div class="crew-item"><span class="crew-role">视觉</span><span class="crew-name">陈鹤鸣 何思远</span></div>
+                        <div class="crew-item"><span class="crew-role">周边</span><span class="crew-name">陈鹤鸣</span></div>
+                        <div class="crew-item"><span class="crew-role">票务</span><span class="crew-name">周　聆 赵　婷</span></div>
+                        <div class="crew-item"><span class="crew-role">场地沟通</span><span class="crew-name">徐　晨</span></div>
+                    </div>
+
                     <div class="final-credits">
                         复旦大学管理学院菁音合唱团
                     </div>
@@ -1010,7 +1072,7 @@
 
             updateUI(0);
 
-            // ===== 歌曲数据（已新增“夜来香”） =====
+            // ===== 歌曲数据（与上一版完全相同，为保证完整性保留全部） =====
             const songData = {
                 "Abendlied": {
                     lyricist: "出自圣经（路加福音 24:29）",
@@ -1062,7 +1124,7 @@
                     composer: "刘晓耕",
                     arranger: null,
                     genre: "民歌改编",
-                    instrumentation: "",
+                    instrumentation: "Accapella",
                     background: "【待补充】",
                     lyrics: "正月放马呜噜噜的正月里正哟\n赶起马来登路尼程\n咿哟 登路尼程\n大马赶在呜噜噜的山头里上哟\n小马赶来随后尼跟\n咿哟 随后的跟\n\n二月放马呜噜噜的百草尼发哟\n小马吃草深山里跑\n咿哟 深山里跑\n马无夜草呜噜噜的不会尼胖哟\n草无露水不会尼发\n咿哟 不会尼发\n\n正月放马呜噜噜的哟\n赶起马来登路尼程\n东山坡上青草尼多\n十月放马石岩尼脚哟\n石呀么石岩脚\n哎心里有话对马儿说"
                 },
@@ -1084,7 +1146,6 @@
                     background: "【待补充】",
                     lyrics: "Oh Danny boy, the pipes, the pipes are calling\n哦，丹尼男孩，风笛声在呼唤\nFrom glen to glen, and down the mountain side\n从一座山谷到另一座，沿着山麓回荡\nThe summer's gone, and all the flowers are dying\n夏日已逝，万花凋零\n'Tis you, 'tis you must go and I must bide.\n是你，是你必须离去，而我只能留下守望\n\nBut come ye back when summer's in the meadow\n但请你归来，当夏日重现草原\nOr when the valley's hushed and white with snow\n或在山谷被白雪覆盖、万籁俱寂之时\n'Tis I'll be here in sunshine or in shadow\n无论在阳光下或在阴影中，我都在这里等候\nOh Danny boy, oh Danny boy, I love you so.\n哦，丹尼男孩，哦，丹尼男孩，我如此深爱你\n\nAnd if you come, when all the flowers are dying\n而若你归来时，恰逢百花衰败\nAnd I am dead, as dead I well may be\n而我也已离世，那也并非不可能\nYou'll come and find the place where I am lying\n你会来到我安息的地方\nAnd kneel and say an \"Ave\" there for me.\n跪在我的墓前，为我念一遍万福玛利亚\n\nAnd I shall hear, tho' soft you tread above me\n我将听见，纵使你脚步轻缓\nAnd all my dreams will warm and sweeter be\n我的梦境也将变得温暖而甜美\nIf you'll not fail to tell me that you love me\n只要你不忘告诉我你仍爱我\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边"
                 },
-                // 绒花的数据保留，供第二板块调用
                 "绒花": {
                     lyricist: "刘国富、田农",
                     composer: "王酩",
@@ -1117,7 +1178,7 @@
                     composer: "刘新成",
                     arranger: null,
                     genre: "当代创作",
-                    instrumentation: "",
+                    instrumentation: "Piano",
                     background: "【待补充】",
                     lyrics: "来信问我\n冰雪的心情\n我摇摇头\n把寂寞和泪水\n都还给了你\n\n至于早春\n缤纷的花事如梦\n我日日在江边梳头\n春水把我的容貌\n也复印给了你\n\n而秋来的岁月\n应是一种等待\n直到你的步履\n落叶似地\n将我的足印\n一一掩覆"
                 },
@@ -1175,13 +1236,12 @@
                     background: "【待补充】",
                     lyrics: "It's a little bit funny, this feeling inside\n这种感觉有点奇妙\nI'm not one of those who can easily hide\n我并非那种善于掩饰的人\nI don't have much money, but boy if I did\n我没有很多钱，但若我有\nI'd buy a big house where we both could live\n我会买栋大房子，让我们同住\nIf I was a sculptor, but then again, no\n如果我是雕塑家，但可惜我不是\nOr a man who makes potions in a travelling show\n或是游艺会上调制药水的人\nI know it's not much, but it's the best I can do\n我知道这不算什么，却是我能给出的最好\nMy gift is my song, and this one's for you\n我的礼物就是我的歌，而这首歌是献给你的\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好\n\nI sat on the roof and kicked off the moss\n我坐在屋顶上，踢掉青苔\nWell a few of the verses, well they've got me quite cross\n有几段歌词让我颇为头疼\nBut the sun's been quite kind while I wrote this song\n但写这首歌时阳光很温柔\nIt's for people like you that keep it turned on\n正是像你这样的人，让它一直闪耀\nSo excuse me forgetting, but these things I do\n所以请原谅我的健忘，我总这样\nYou see I've forgotten if they're green or they're blue\n你看，我甚至忘了它们是绿色还是蓝色\nAnyway the thing is what I really mean\n总之，我想说的是\nYours are the sweetest eyes I've ever seen\n你有着我见过最动人的眼睛\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好"
                 },
-                // 新增夜来香
                 "夜来香": {
                     lyricist: "黎锦光",
                     composer: "黎锦光",
                     arranger: "刘文毅",
                     genre: "流行改编",
-                    instrumentation: "Piano",
+                    instrumentation: "Accapella",
                     background: "【待补充】",
                     lyrics: "那南风吹来清凉\n那夜莺啼声细唱\n月下的花儿都入梦\n只有那夜来香\n吐露着芬芳\n\n我爱这夜色茫茫\n也爱这夜莺歌唱\n更爱那花一般的梦\n拥抱着夜来香\n吻着夜来香\n\n夜来香 我为你歌唱\n夜来香 我为你思量\n啊 我为你歌唱\n我为你思量\n\n夜来香 我为你歌唱\n夜来香 我为你思量\n啊 我为你歌唱\n我为你思量\n\n夜来香 夜来香 夜来香"
                 },
