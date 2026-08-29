@@ -6,7 +6,7 @@
     <title>变迁 · Vicissitudes 音乐会</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== 全部样式与上一版一致，仅移除水印相关 ===== */
+        /* ===== 全部样式与上一版完全一致 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -264,12 +264,11 @@
             opacity: 0.1;
         }
 
-        /* ===== S2: 卷首语 1（移除水印） ===== */
+        /* ===== S2: 卷首语 1 ===== */
         #slide-2 {
             background: radial-gradient(circle at 30% 30%, #2a1f18, #0d0a08);
             overflow: hidden;
         }
-        /* 背景浮动光晕保留 */
         #slide-2 .ambient-glow {
             position: absolute;
             width: 60vw;
@@ -286,9 +285,6 @@
             0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
             100% { transform: translate(-30px, 40px) scale(1.3); opacity: 1; }
         }
-        /* 移除水印 .watermark-char */
-
-        /* 诗句容器 */
         #slide-2 .poem-wrapper {
             position: relative;
             z-index: 2;
@@ -331,7 +327,6 @@
             }
         }
 
-        /* 响应式适配第二页 */
         @media (max-width: 768px) {
             #slide-2 .poem-line {
                 font-size: 1.1rem;
@@ -720,10 +715,9 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 2: 卷首语 1（已移除水印） ===== -->
+        <!-- ===== SLIDE 2: 卷首语 1 ===== -->
         <div class="slide" id="slide-2" data-index="1">
             <div class="ambient-glow"></div>
-            <!-- 已删除 <div class="watermark-char">声</div> -->
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="poem-wrapper">
                     <p class="poem-line">
@@ -801,18 +795,20 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 7: 第二趴 曲目 ===== -->
+        <!-- ===== SLIDE 7: 第二趴 曲目（绒花已移至 Danny Boy 和 Arirang 之间） ===== -->
         <div class="slide" id="slide-7" data-index="6" style="background: #2a1f14;">
             <div class="content">
                 <div class="fade-up" style="width:100%;">
                     <div style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:15px; margin-bottom:15px;">
                         <h3 style="font-size:1.8rem; letter-spacing:6px;">人文风俗</h3>
-                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">5首</span>
+                        <span style="color:rgba(255,255,255,0.3); font-size:0.9rem; letter-spacing:2px;">6首</span>
                     </div>
                     <div class="track-grid">
                         <div class="track-card" data-song="新编放马山歌"><div class="track-name">新编放马山歌</div><div class="track-detail"><span>民歌改编</span> · —</div></div>
                         <div class="track-card" data-song="愿"><div class="track-name">愿</div><div class="track-detail"><span>当代创作</span> Piano · 6'20"</div></div>
                         <div class="track-card" data-song="Danny Boy"><div class="track-name">Danny Boy</div><div class="track-detail"><span>民歌改编</span> Accapella · 3'10"</div></div>
+                        <!-- 绒花已移至此处 -->
+                        <div class="track-card" data-song="绒花"><div class="track-name">绒花</div><div class="track-detail"><span>流行改编</span> Piano · —</div></div>
                         <div class="track-card" data-song="Arirang"><div class="track-name">Arirang <span style="font-weight:300;color:rgba(255,255,255,0.4);">阿里郎</span></div><div class="track-detail"><span>民歌改编</span> Piano, Perc. · 2'45"</div></div>
                         <div class="track-card" data-song="追梦人"><div class="track-name">追梦人</div><div class="track-detail"><span>流行改编</span> Piano · 6'25"</div></div>
                     </div>
@@ -854,15 +850,16 @@
             </div>
         </div>
 
-        <!-- ===== SLIDE 10: ENCORE ===== -->
+        <!-- ===== SLIDE 10: ENCORE（首曲已换为夜来香） ===== -->
         <div class="slide" id="slide-10" data-index="9">
             <span class="chapter-number" style="color:rgba(201,169,110,0.08);">✦</span>
             <div class="content" style="align-items:center; text-align:center;">
                 <div class="fade-up" style="width:100%;">
                     <div style="font-size:1.2rem; letter-spacing:12px; color:var(--dark-gold); margin-bottom:20px; font-weight:300;">ENCORE</div>
                     <div class="track-grid" style="max-width:600px; margin:0 auto;">
-                        <div class="track-card" data-song="绒花">
-                            <div class="track-name">绒花</div>
+                        <!-- 第一首替换为夜来香 -->
+                        <div class="track-card" data-song="夜来香">
+                            <div class="track-name">夜来香</div>
                             <div class="track-detail"><span>流行改编</span> Piano · —</div>
                         </div>
                         <div class="track-card" data-song="外婆的澎湖湾">
@@ -1013,7 +1010,7 @@
 
             updateUI(0);
 
-            // ===== 歌曲数据 =====
+            // ===== 歌曲数据（已新增“夜来香”） =====
             const songData = {
                 "Abendlied": {
                     lyricist: "出自圣经（路加福音 24:29）",
@@ -1061,7 +1058,6 @@
                     lyrics: "Sure on this shining night\n在这灿烂的夜晚\nOf starmade shadows round,\n熠熠星光环绕夜幕之上\nKindness must watch for me\n仁慈的上苍必定正看照着\nThis side the ground.\n那站在大地上的我\n\nThe late year lies down the north.\n寒冬向北方远去\nAll is healed, all is health.\n疗愈了万物，大地欣欣向荣\nHigh summer holds the earth.\n炙夏笼罩全地\nHearts all whole.\n完满了万众之心\n\nSure on this shining night\n在这灿烂的夜晚\nI weep for wonder\n我为这奇景低声啜泣\nWandering far alone\n独自一人漫步在\nOf shadows on the stars.\n由那星光所织成的天幕之下"
                 },
                 "新编放马山歌": {
-                    // 修改标签内容：lyricist 放 "云南民歌"，composer 放 "刘晓耕"
                     lyricist: "云南民歌",
                     composer: "刘晓耕",
                     arranger: null,
@@ -1088,8 +1084,17 @@
                     background: "【待补充】",
                     lyrics: "Oh Danny boy, the pipes, the pipes are calling\n哦，丹尼男孩，风笛声在呼唤\nFrom glen to glen, and down the mountain side\n从一座山谷到另一座，沿着山麓回荡\nThe summer's gone, and all the flowers are dying\n夏日已逝，万花凋零\n'Tis you, 'tis you must go and I must bide.\n是你，是你必须离去，而我只能留下守望\n\nBut come ye back when summer's in the meadow\n但请你归来，当夏日重现草原\nOr when the valley's hushed and white with snow\n或在山谷被白雪覆盖、万籁俱寂之时\n'Tis I'll be here in sunshine or in shadow\n无论在阳光下或在阴影中，我都在这里等候\nOh Danny boy, oh Danny boy, I love you so.\n哦，丹尼男孩，哦，丹尼男孩，我如此深爱你\n\nAnd if you come, when all the flowers are dying\n而若你归来时，恰逢百花衰败\nAnd I am dead, as dead I well may be\n而我也已离世，那也并非不可能\nYou'll come and find the place where I am lying\n你会来到我安息的地方\nAnd kneel and say an \"Ave\" there for me.\n跪在我的墓前，为我念一遍万福玛利亚\n\nAnd I shall hear, tho' soft you tread above me\n我将听见，纵使你脚步轻缓\nAnd all my dreams will warm and sweeter be\n我的梦境也将变得温暖而甜美\nIf you'll not fail to tell me that you love me\n只要你不忘告诉我你仍爱我\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边\nI'll simply sleep in peace until you come to me.\n我将安然长眠，直到你来到我身边"
                 },
+                // 绒花的数据保留，供第二板块调用
+                "绒花": {
+                    lyricist: "刘国富、田农",
+                    composer: "王酩",
+                    arranger: "吴昊",
+                    genre: "流行改编",
+                    instrumentation: "Piano",
+                    background: "【待补充】",
+                    lyrics: "世上有朵美丽的花\n那是青春吐芳华\n铮铮硬骨绽花开\n沥沥鲜血染红它\n\n啊～ 啊～\n绒花，绒花\n啊～ 啦～\n一路芬芳满山崖\n\n世上有朵英雄的花\n那是青春放光华\n花载亲人上高山\n顶天立地迎彩霞\n\n啊～ 啊～\n绒花，绒花\n啦～ 啦～\n一路芬芳满山崖"
+                },
                 "Arirang": {
-                    // 修改标签内容：lyricist 放 "中国朝鲜族及韩国传统音乐"，composer 放 "hyowon Woo"
                     lyricist: "中国朝鲜族及韩国传统音乐",
                     composer: "hyowon Woo",
                     arranger: null,
@@ -1170,14 +1175,15 @@
                     background: "【待补充】",
                     lyrics: "It's a little bit funny, this feeling inside\n这种感觉有点奇妙\nI'm not one of those who can easily hide\n我并非那种善于掩饰的人\nI don't have much money, but boy if I did\n我没有很多钱，但若我有\nI'd buy a big house where we both could live\n我会买栋大房子，让我们同住\nIf I was a sculptor, but then again, no\n如果我是雕塑家，但可惜我不是\nOr a man who makes potions in a travelling show\n或是游艺会上调制药水的人\nI know it's not much, but it's the best I can do\n我知道这不算什么，却是我能给出的最好\nMy gift is my song, and this one's for you\n我的礼物就是我的歌，而这首歌是献给你的\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好\n\nI sat on the roof and kicked off the moss\n我坐在屋顶上，踢掉青苔\nWell a few of the verses, well they've got me quite cross\n有几段歌词让我颇为头疼\nBut the sun's been quite kind while I wrote this song\n但写这首歌时阳光很温柔\nIt's for people like you that keep it turned on\n正是像你这样的人，让它一直闪耀\nSo excuse me forgetting, but these things I do\n所以请原谅我的健忘，我总这样\nYou see I've forgotten if they're green or they're blue\n你看，我甚至忘了它们是绿色还是蓝色\nAnyway the thing is what I really mean\n总之，我想说的是\nYours are the sweetest eyes I've ever seen\n你有着我见过最动人的眼睛\nAnd you can tell everybody this is your song\n你可以告诉大家，这是你的歌\nIt may be quite simple, but now that it's done\n它或许很简单，但既然已完成\nI hope you don't mind\n希望你不介意\nI hope you don't mind that I put down in words\n希望你不介意我把它写进了词句里\nHow wonderful life is while you're in the world\n诉说有你在的世界，生活有多么美好"
                 },
-                "绒花": {
-                    lyricist: "刘国富、田农",
-                    composer: "王酩",
-                    arranger: "吴昊",
+                // 新增夜来香
+                "夜来香": {
+                    lyricist: "黎锦光",
+                    composer: "黎锦光",
+                    arranger: "刘文毅",
                     genre: "流行改编",
                     instrumentation: "Piano",
                     background: "【待补充】",
-                    lyrics: "世上有朵美丽的花\n那是青春吐芳华\n铮铮硬骨绽花开\n沥沥鲜血染红它\n\n啊～ 啊～\n绒花，绒花\n啊～ 啦～\n一路芬芳满山崖\n\n世上有朵英雄的花\n那是青春放光华\n花载亲人上高山\n顶天立地迎彩霞\n\n啊～ 啊～\n绒花，绒花\n啦～ 啦～\n一路芬芳满山崖"
+                    lyrics: "那南风吹来清凉\n那夜莺啼声细唱\n月下的花儿都入梦\n只有那夜来香\n吐露着芬芳\n\n我爱这夜色茫茫\n也爱这夜莺歌唱\n更爱那花一般的梦\n拥抱着夜来香\n吻着夜来香\n\n夜来香 我为你歌唱\n夜来香 我为你思量\n啊 我为你歌唱\n我为你思量\n\n夜来香 我为你歌唱\n夜来香 我为你思量\n啊 我为你歌唱\n我为你思量\n\n夜来香 夜来香 夜来香"
                 },
                 "外婆的澎湖湾": {
                     lyricist: "叶佳修",
@@ -1228,7 +1234,6 @@
                     modalTitle.textContent = songKey;
                     modalSub.textContent = `${data.genre} · ${data.instrumentation}`;
 
-                    // ----- 动态调整标签文字（针对特定歌曲） -----
                     if (songKey === '新编放马山歌') {
                         lyricistLabel.textContent = '词曲：';
                         composerLabel.textContent = '编创：';
